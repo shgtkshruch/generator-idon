@@ -10,10 +10,12 @@ config =
 
 gulp.task 'browser-sync', ->
   browserSync
+    watchOptions:
+      debounceDelay: 0
     server:
       baseDir: config.dest
     notify: false
-    injectChanges: false
+    reloadDelay: 0
 
 gulp.task 'jade', ->
   gulp.src config.src + '/index.jade'
@@ -21,6 +23,8 @@ gulp.task 'jade', ->
     .pipe $.jade
       pretty: true
     .pipe gulp.dest config.dest
+    .pipe browserSync.reload
+      stream: true
 
 gulp.task 'sass', ->
   gulp.src config.src + '/styles/**/*.scss'
@@ -42,6 +46,8 @@ gulp.task 'coffee', ->
       extension: '.js'
     .pipe $.coffee()
     .pipe gulp.dest config.dest + '/scripts'
+    .pipe browserSync.reload
+      stream: true
 
 gulp.task 'default', ['build', 'browser-sync'], ->
   gulp.watch config.src + '/index.jade', ['jade']
