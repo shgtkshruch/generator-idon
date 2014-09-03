@@ -13,9 +13,7 @@ gulp.task 'browser-sync', ->
     server:
       baseDir: config.dest
     notify: false
-
-gulp.task 'bs-reload', ->
-  browserSync.reload()
+    injectChanges: false
 
 gulp.task 'jade', ->
   gulp.src config.src + '/index.jade'
@@ -33,7 +31,7 @@ gulp.task 'sass', ->
       require: ['bourbon', 'breakpoint']
       bundleExec: true
     .pipe $.autoprefixer 'last 2 version', 'ie 8', 'ie 7'
-    .pipe gulp.dest config.dest
+    .pipe gulp.dest config.dest + '/styles'
     .pipe browserSync.reload
       stream: true
 
@@ -43,12 +41,11 @@ gulp.task 'coffee', ->
     .pipe $.changed config.dest,
       extension: '.js'
     .pipe $.coffee()
-    .pipe gulp.dest config.dest
+    .pipe gulp.dest config.dest + '/scripts'
 
-gulp.task 'default', ['browser-sync'], ->
-  gulp.watch config.src + '/**/*', ['bs-reload']
-  gulp.watch config.src + '/index.jade', ['jade', 'bs-reload']
-  gulp.watch config.src + '/styles/*.scss', ['sass', 'bs-reload']
-  gulp.watch config.src + '/scripts/*.coffee', ['coffee', 'bs-reload']
+gulp.task 'default', ['build', 'browser-sync'], ->
+  gulp.watch config.src + '/index.jade', ['jade']
+  gulp.watch config.src + '/styles/*.scss', ['sass']
+  gulp.watch config.src + '/scripts/*.coffee', ['coffee']
 
 gulp.task 'build', ['jade', 'sass', 'coffee']
