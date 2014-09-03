@@ -7,6 +7,7 @@ describe('CSS generator', function() {
   describe('Run test', function() {
 
     var options = {
+      'skip-install': true,
       'skip-bundle': true
     };
 

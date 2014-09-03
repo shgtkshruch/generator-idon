@@ -10,14 +10,15 @@ config =
 
 gulp.task 'browser-sync', ->
   browserSync
-    files: config.src + '/*'
+    server:
+      baseDir: config.dest
     notify: false
 
 gulp.task 'bs-reload', ->
   browserSync.reload()
 
 gulp.task 'jade', ->
-  gulp.src config.src + 'index.jade'
+  gulp.src config.src + '/index.jade'
     .pipe $.plumber()
     .pipe $.jade
       pretty: true
@@ -46,9 +47,8 @@ gulp.task 'coffee', ->
 
 gulp.task 'default', ['browser-sync'], ->
   gulp.watch config.src + '/**/*', ['bs-reload']
-  gulp.watch config.src + 'src/index.jade', ['jade', 'bs-reload']
+  gulp.watch config.src + '/index.jade', ['jade', 'bs-reload']
   gulp.watch config.src + '/styles/*.scss', ['sass', 'bs-reload']
   gulp.watch config.src + '/scripts/*.coffee', ['coffee', 'bs-reload']
 
 gulp.task 'build', ['jade', 'sass', 'coffee']
-
