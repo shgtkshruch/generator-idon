@@ -1,7 +1,8 @@
 var yeoman = require('yeoman-generator');
 
 module.exports = yeoman.generators.Base.extend({
-  init: function() {
-    console.log('hello yeoman');
+  app: function() {
+    this.copy('index.html', 'src/index.html');
+    this.copy('style.scss', 'src/style/style.scss');
   }
 });

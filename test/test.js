@@ -1,4 +1,5 @@
 var helpers = require('yeoman-generator').test;
+var assert = require('yeoman-generator').assert;
 var path = require('path');
 
 
@@ -14,6 +15,10 @@ describe('CSS generator', function() {
 
     it('create expected files', function(done) {
       runGen.on('end', function() {
+        assert.file(
+          'src/index.html',
+          'src/style/style.scss'
+        );
         done();
       });
     });
