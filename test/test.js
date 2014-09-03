@@ -16,7 +16,7 @@ describe('CSS generator', function() {
     it('create expected files', function(done) {
       runGen.on('end', function() {
         assert.file(
-          'src/index.html',
+          'src/index.jade',
           'src/styles/style.scss',
           'src/scripts/script.coffee',
           'package.json',

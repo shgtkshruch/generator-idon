@@ -16,6 +16,13 @@ gulp.task 'browser-sync', ->
 gulp.task 'bs-reload', ->
   browserSync.reload()
 
+gulp.task 'jade', ->
+  gulp.src config.src + 'index.jade'
+    .pipe $.plumber()
+    .pipe $.jade
+      pretty: true
+    .pipe gulp.dest config.dest
+
 gulp.task 'sass', ->
   gulp.src config.src + '/styles/**/*.scss'
     .pipe $.plumber()
@@ -24,22 +31,23 @@ gulp.task 'sass', ->
       style: 'expanded'
       bundleExec: true
     .pipe $.autoprefixer 'last 2 version', 'ie 8', 'ie 7'
-    .pipe gulp.dest config.theme
+    .pipe gulp.dest config.dest
     .pipe browserSync.reload
       stream: true
 
 gulp.task 'coffee', ->
   gulp.src config.src + '/scripts/*.coffee'
     .pipe $.plumber()
-    .pipe $.changed config.theme,
+    .pipe $.changed config.dest,
       extension: '.js'
     .pipe $.coffee()
-    .pipe gulp.dest config.theme
+    .pipe gulp.dest config.dest
 
 gulp.task 'default', ['browser-sync'], ->
   gulp.watch config.src + '/**/*', ['bs-reload']
+  gulp.watch config.src + 'src/index.jade', ['jade', 'bs-reload']
   gulp.watch config.src + '/styles/*.scss', ['sass', 'bs-reload']
   gulp.watch config.src + '/scripts/*.coffee', ['coffee', 'bs-reload']
 
-gulp.task 'build', ['sass', 'coffee']
+gulp.task 'build', ['jade', 'sass', 'coffee']
 

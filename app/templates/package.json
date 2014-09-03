@@ -9,6 +9,7 @@
   "author": "shgtkshruch",
   "devDependencies": {
     "gulp": "*",
+    "gulp-jade": "*",
     "gulp-ruby-sass": "*",
     "browser-sync": "*",
     "gulp-coffee": "*",
