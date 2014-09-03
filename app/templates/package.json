@@ -13,6 +13,7 @@
     "browser-sync": "*",
     "gulp-coffee": "*",
     "gulp-plumber": "*",
+    "gulp-changed": "*",
     "gulp-filter": "*",
     "gulp-autoprefixer": "*",
     "gulp-load-plugins": "*",

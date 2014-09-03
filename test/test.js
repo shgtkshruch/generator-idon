@@ -18,6 +18,7 @@ describe('CSS generator', function() {
         assert.file(
           'src/index.html',
           'src/styles/style.scss',
+          'src/scripts/script.coffee',
           'package.json',
           'gulpfile.coffee'
         );
