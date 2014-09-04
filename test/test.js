@@ -33,8 +33,9 @@ describe('CSS generator', function() {
         );
 
         assert.fileContent([
-          ['bower.json', /jquery/],
-          ['bower.json', /"name": "tmp"/]
+          ['package.json', /"name": "tmp"/],
+          ['bower.json', /"name": "tmp"/],
+          ['bower.json', /jquery/]
         ]);
 
         assert.noFileContent([

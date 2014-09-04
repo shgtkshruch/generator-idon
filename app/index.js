@@ -1,4 +1,6 @@
 var yeoman = require('yeoman-generator');
+var fs = require('fs');
+var wiredep = require('wiredep');
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function() {
@@ -40,7 +42,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   gulp: function() {
-    this.copy('package.json', 'package.json');
+    this.template('package.json', 'package.json');
     this.copy('gulpfile.coffee', 'gulpfile.coffee');
   },
 
@@ -69,11 +71,22 @@ module.exports = yeoman.generators.Base.extend({
   install: function() {
     var _this = this;
 
+    function injectWiredep() {
+      wiredep({
+        directory: 'bower_components',
+        bowerJson: JSON.parse(fs.readFileSync('./bower.json')),
+        src: 'src/index.jade'
+      });
+    };
+
     function bundleInstall() {
       if (!_this.options['skip-bundle']) {
-        _this.spawnCommand('bundle', ['install', '--path', 'vendor/bundle']);
+        var bundle = _this.spawnCommand('bundle', ['install', '--path', 'vendor/bundle']);
+        bundle.on('close', function(code) {
+          injectWiredep();
+        });
       }
-    }
+    };
 
     if (!this.options['skip-install']) {
       this.installDependencies({
