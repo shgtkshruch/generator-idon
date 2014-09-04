@@ -19,7 +19,7 @@ describe('CSS generator', function() {
     });
 
     it('create expected files', function(done) {
-      runGen.withOptions(options).withPrompt({jslib: ['includeJquery']})
+      runGen.withOptions(options).withPrompt({jslib: ['jquery']})
       .on('end', function() {
 
         assert.file(

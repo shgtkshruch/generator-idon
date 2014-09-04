@@ -4,28 +4,21 @@ var wiredep = require('wiredep');
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function() {
+    var choices = [];
+    var jslibs = ['jQuery', 'velocity', 'Three.js'];
     var done = this.async();
+
+    jslibs.forEach(function(jslib) {
+      choices.push({name: jslib, value: jslib.toLowerCase()});
+    });
+
     this.prompt({
       type: 'checkbox',
       name: 'jslib',
       message: 'Which do you use JavaScript Library?',
-      choices: [{
-        name: 'jQuery',
-        value: 'includeJquery',
-        checked: false
-      },{
-        name: 'Three.js',
-        value: 'includeThree',
-        checked: false
-      }]
+      choices: choices
     }, function(answers) {
-
-      var hasjs = function(feat) {
-        return answers.jslib.indexOf(feat) !== -1;
-      }
-
-      this.includeJquery = hasjs('includeJquery');
-      this.includeThree = hasjs('includeThree');
+      this.jslibs = answers.jslib;
 
       done();
     }.bind(this));
@@ -53,13 +46,9 @@ module.exports = yeoman.generators.Base.extend({
       dependencies: {}
     };
 
-    if (this.includeJquery) {
-      bower.dependencies.jquery = '*';
-    }
-
-    if (this.includeThree) {
-      bower.dependencies['three.js'] = '*';
-    }
+    this.jslibs.forEach(function(jslib) {
+      bower.dependencies[jslib] = '*';
+    });
 
     this.write('bower.json', JSON.stringify(bower, null, 2));
   },
