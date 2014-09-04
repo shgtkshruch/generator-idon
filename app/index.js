@@ -69,12 +69,10 @@ module.exports = yeoman.generators.Base.extend({
     };
 
     function bundleInstall() {
-      if (!_this.options['skip-bundle']) {
-        var bundle = _this.spawnCommand('bundle', ['install', '--path', 'vendor/bundle']);
-        bundle.on('close', function(code) {
-          injectWiredep();
-        });
-      }
+      var bundle = _this.spawnCommand('bundle', ['install', '--path', 'vendor/bundle']);
+      bundle.on('close', function(code) {
+        injectWiredep();
+      });
     };
 
     if (!this.options['skip-install']) {
