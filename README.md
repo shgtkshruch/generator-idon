@@ -1,4 +1,4 @@
-# Yo idon
+# Yo idon [![Build Status](https://travis-ci.org/shgtkshruch/generator-idon.svg?branch=master)](https://travis-ci.org/shgtkshruch/generator-idon)
 
 Yeoman generator for starting sketch HTML, CSS, and JavaScript
 
