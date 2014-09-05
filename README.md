@@ -2,11 +2,20 @@
 
 Yeoman generator for starting sketch HTML, CSS, and JavaScript
 
+## Requirements
+- [Yeoman](http://yeoman.io/)
+- [gulp](http://gulpjs.com/)
+- [Bower](http://bower.io/)
+- [Bundler](http://bundler.io/)
+
 ## Features
 
 - CSS Autoprefixing
 - Automagically complie Jade, Sass, CoffeeScript
 - Built-in server with Browser-sync
+- Choose jQuery, velocity, Three.js from JavaScript library (Optional)
+- Automagically wire up your Bower components with wiredep
+- Bourbon and Breakpoint for Sass
 
 ## Getting Started
 
@@ -16,8 +25,8 @@ Yeoman generator for starting sketch HTML, CSS, and JavaScript
     
 ## Usage
 
-    mkdir myproject
-    cd myproject
+    mkdir my_project
+    cd my_project
     yo idon
     
 ## License
