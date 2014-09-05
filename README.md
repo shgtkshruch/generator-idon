@@ -19,15 +19,20 @@ Yeoman generator for starting sketch HTML, CSS, and JavaScript
 
 ## Getting Started
 
-    git clone git@github.com:shgtkshruch/generator-idon.git
-    cd generator-idon
-    npm link
+Install `generator-idon`:
+
+    npm install -g generator-idon
     
-## Usage
+Make a new directory, and `cd` into it:
 
     mkdir my_project
     cd my_project
+    
+Run `yo idon`:
+
     yo idon
+    
+Run `gulp` and start your coding!
     
 ## License
 
