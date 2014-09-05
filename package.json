@@ -17,9 +17,11 @@
     "url": "https://github.com/shgtkshruch/generator-idon/issues"
   },
   "homepage": "https://github.com/shgtkshruch/generator-idon",
-  "devDependencies": {
-    "mocha": "^1.21.4",
+  "dependencies": {
     "wiredep": "^1.8.5",
     "yeoman-generator": "^0.17.5"
+  },
+  "devDependencies": {
+    "mocha": "^1.21.4",
   }
 }
