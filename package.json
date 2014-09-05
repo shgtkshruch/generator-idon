@@ -1,8 +1,9 @@
 {
   "name": "generator-idon",
   "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Yeoman generator for starting sketch HTML, CSS, and JavaScript",
+  "keywords": ["yeoman-generator"],
+  "main": "app/index.js",
   "scripts": {
     "test": "mocha --reporter spec"
   },
@@ -10,8 +11,8 @@
     "type": "git",
     "url": "https://github.com/shgtkshruch/generator-idon.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "shgtkshruch",
+  "license": "BSD",
   "bugs": {
     "url": "https://github.com/shgtkshruch/generator-idon/issues"
   },
