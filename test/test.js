@@ -27,12 +27,17 @@ describe('Yo idon generator', function() {
     });
 
     it('create expected files', function(done) {
-      runGen.withOptions(options).withPrompt({jslib: []})
+      runGen.withOptions(options).withPrompt({jslib: [], gem: []})
       .on('end', function() {
 
         assert.file([].concat(
           expected
         ));
+
+        assert.noFile([
+          'bower.json',
+          'Gemfile'
+        ]);
 
         assert.fileContent([
           ['package.json', /"name": "tmp"/]
@@ -43,7 +48,7 @@ describe('Yo idon generator', function() {
     });
 
     it('create expected bower files', function(done) {
-      runGen.withOptions(options).withPrompt({jslib: ['jquery']})
+      runGen.withOptions(options).withPrompt({jslib: ['jquery'], gem: []})
       .on('end', function() {
 
         assert.file([].concat(
@@ -64,6 +69,23 @@ describe('Yo idon generator', function() {
       });
     });
 
+    it('create expected Gem files', function(done) {
+      runGen.withOptions(options).withPrompt({jslib: [], gem: ['bourbon', 'breakpoint']})
+      .on('end', function() {
+
+        assert.file([].concat(
+          expected,
+          'Gemfile'
+        ));
+
+        assert.fileContent([
+          ['Gemfile', /gem "bourbon"/],
+          ['Gemfile', /gem "breakpoint"/]
+        ]);
+
+        done();
+      });
+    });
   });
 });
 

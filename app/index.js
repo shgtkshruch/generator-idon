@@ -4,21 +4,34 @@ var wiredep = require('wiredep');
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function() {
-    var choices = [];
+    var jsChoices = [];
     var jslibs = ['jQuery', 'velocity', 'Three.js'];
+    var gemChoices = [];
+    var gems = ['bourbon', 'breakpoint'];
+
     var done = this.async();
 
     jslibs.forEach(function(jslib) {
-      choices.push({name: jslib, value: jslib.toLowerCase()});
+      jsChoices.push({name: jslib, value: jslib.toLowerCase()});
     });
 
-    this.prompt({
+    gems.forEach(function(gem) {
+      gemChoices.push({name: gem, value: gem});
+    });
+
+    this.prompt([{
       type: 'checkbox',
       name: 'jslib',
-      message: 'Which do you use JavaScript Library?',
-      choices: choices
-    }, function(answers) {
+      message: 'Do you want to use any JavaScript libraries?',
+      choices: jsChoices
+    },{
+      type: 'checkbox',
+      name: 'gem',
+      message: 'Do you want to use any Sass libraries?',
+      choices: gemChoices
+    }], function(answers) {
       this.jslibs = answers.jslib;
+      this.gems = answers.gem;
 
       done();
     }.bind(this));
@@ -56,6 +69,10 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   gem: function() {
+    if (this.gems.length === 0) {
+      return;
+    }
+
     this.copy('Gemfile', 'Gemfile');
   },
 
@@ -71,6 +88,10 @@ module.exports = yeoman.generators.Base.extend({
     };
 
     function bundleInstall() {
+      if (_this.gems.length === 0) {
+        return;
+      }
+
       var bundle = _this.spawnCommand('bundle', ['install', '--path', 'vendor/bundle']);
       bundle.on('close', function(code) {
         injectWiredep();
