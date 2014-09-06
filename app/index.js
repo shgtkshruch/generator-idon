@@ -40,17 +40,19 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   bower: function() {
-    var bower = {
-      name: this._.slugify(this.appname),
-      private: true,
-      dependencies: {}
-    };
+    if (this.jslibs.length !== 0) {
+      var bower = {
+        name: this._.slugify(this.appname),
+        private: true,
+        dependencies: {}
+      };
 
-    this.jslibs.forEach(function(jslib) {
-      bower.dependencies[jslib] = '*';
-    });
+      this.jslibs.forEach(function(jslib) {
+        bower.dependencies[jslib] = '*';
+      });
 
-    this.write('bower.json', JSON.stringify(bower, null, 2));
+      this.write('bower.json', JSON.stringify(bower, null, 2));
+    }
   },
 
   gem: function() {
