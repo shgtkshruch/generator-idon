@@ -80,6 +80,10 @@ module.exports = yeoman.generators.Base.extend({
     var _this = this;
 
     function injectWiredep() {
+      if (_this.jslibs.length === 0) {
+        return
+      }
+
       wiredep({
         directory: 'bower_components',
         bowerJson: JSON.parse(fs.readFileSync('./bower.json')),
@@ -89,13 +93,10 @@ module.exports = yeoman.generators.Base.extend({
 
     function bundleInstall() {
       if (_this.gems.length === 0) {
-        return;
+        return
       }
 
-      var bundle = _this.spawnCommand('bundle', ['install', '--path', 'vendor/bundle']);
-      bundle.on('close', function(code) {
-        injectWiredep();
-      });
+      _this.spawnCommand('bundle', ['install', '--path', 'vendor/bundle']);
     };
 
     if (!this.options['skip-install']) {
@@ -105,6 +106,7 @@ module.exports = yeoman.generators.Base.extend({
         skipInstall: this.options['skip-install'],
         callback: function() {
           bundleInstall();
+          injectWiredep();
         }
       });
     }

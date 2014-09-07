@@ -31,10 +31,14 @@ gulp.task 'sass', ->
     .pipe $.plumber()
     .pipe $.filter '**/style.scss'
     .pipe $.rubySass
-      style: 'expanded'
-      require: ['bourbon', 'breakpoint']
-      bundleExec: true
-    .pipe $.autoprefixer 'last 2 version', 'ie 8', 'ie 7'
+      style: 'expanded' <% if (gems.length !== 0) { 
+        var requires = [];
+        gems.forEach(function(gem) {
+          requires.push("'" + gem + "'");
+        }) %>
+      require: [<%= requires %>] 
+      bundleExec: true <% } %>
+    .pipe $.autoprefixer 'last 2 version', 'ie 9', 'ie 8'
     .pipe gulp.dest config.dest + '/styles'
     .pipe browserSync.reload
       stream: true

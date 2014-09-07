@@ -23,7 +23,7 @@ describe('Yo idon generator', function() {
     beforeEach(function() {
       runGen = helpers
         .run(path.join(__dirname, '../app'))
-        .inDir(path.join(__dirname, '.tmp'))
+        .inDir(path.join(__dirname, '.tmp'));
     });
 
     it('create expected files', function(done) {
@@ -41,6 +41,11 @@ describe('Yo idon generator', function() {
 
         assert.fileContent([
           ['package.json', /"name": "tmp"/]
+        ]);
+
+        assert.noFileContent([
+          ['gulpfile.coffee', /require: ['bourbon']/],
+          ['gulpfile.coffee', /bundleExec: true/]
         ]);
 
         done();
@@ -80,7 +85,9 @@ describe('Yo idon generator', function() {
 
         assert.fileContent([
           ['Gemfile', /gem "bourbon"/],
-          ['Gemfile', /gem "breakpoint"/]
+          ['Gemfile', /gem "breakpoint"/],
+          ['gulpfile.coffee', /require: \['bourbon','breakpoint'\]/],
+          ['gulpfile.coffee', /bundleExec: true/]
         ]);
 
         done();
