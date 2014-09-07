@@ -3,9 +3,12 @@
 Yeoman generator for starting sketch HTML, CSS, and JavaScript
 
 ## Requirements
+
 - [Yeoman](http://yeoman.io/)
 - [gulp](http://gulpjs.com/)
-- [Bower](http://bower.io/)
+
+If you want to use JavaScript and Sass libraryies, the following require.
+- [Bower](http://bower.io/) 
 - [Bundler](http://bundler.io/)
 
 ## Features
@@ -15,9 +18,9 @@ Yeoman generator for starting sketch HTML, CSS, and JavaScript
 - Built-in server with Browser-sync
 - Choose jQuery, velocity, Three.js from JavaScript library (Optional)
 - Automagically wire up your Bower components with wiredep
-- Bourbon and Breakpoint for Sass
+- Bourbon and Breakpoint for Sass (Optional)
 
-## Getting Started
+## Getting Start
 
 Install `generator-idon`:
 
