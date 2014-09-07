@@ -7,7 +7,7 @@ Yeoman generator for starting sketch HTML, CSS, and JavaScript
 - [Yeoman](http://yeoman.io/)
 - [gulp](http://gulpjs.com/)
 
-If you want to use JavaScript and Sass libraryies, the following require.
+If you want to use JavaScript and Sass libraries, the following require.
 - [Bower](http://bower.io/) 
 - [Bundler](http://bundler.io/)
 
