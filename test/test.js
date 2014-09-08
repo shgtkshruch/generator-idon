@@ -15,7 +15,8 @@ describe('Yo idon generator', function() {
       'src/scripts/script.coffee',
       '.gitignore',
       'package.json',
-      'gulpfile.coffee'
+      'gulpfile.coffee',
+      'github-pages.sh'
     ];
 
     var runGen;
@@ -45,7 +46,8 @@ describe('Yo idon generator', function() {
 
         assert.noFileContent([
           ['gulpfile.coffee', /require: ['bourbon']/],
-          ['gulpfile.coffee', /bundleExec: true/]
+          ['gulpfile.coffee', /bundleExec: true/],
+          ['src/styles/style.scss', /@import: "bourbon";/]
         ]);
 
         done();
@@ -86,6 +88,8 @@ describe('Yo idon generator', function() {
         assert.fileContent([
           ['Gemfile', /gem "bourbon"/],
           ['Gemfile', /gem "breakpoint"/],
+          ['src/styles/style.scss', /@import "bourbon";/],
+          ['src/styles/style.scss', /@import "breakpoint";/],
           ['gulpfile.coffee', /require: \['bourbon','breakpoint'\]/],
           ['gulpfile.coffee', /bundleExec: true/]
         ]);

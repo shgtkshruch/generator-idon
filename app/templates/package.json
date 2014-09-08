@@ -2,7 +2,8 @@
   "name": "<%= _.slugify(appname) %>",
   "version": "0.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish": "./github-pages.sh"
   },
   "devDependencies": {
     "gulp": "*",

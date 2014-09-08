@@ -41,6 +41,10 @@ module.exports = yeoman.generators.Base.extend({
     this.copy('gitignore', '.gitignore');
   },
 
+  gtihubPages: function() {
+    this.copy('github-pages.sh', 'github-pages.sh');
+  },
+
   app: function() {
     this.copy('index.jade', 'src/index.jade');
     this.copy('style.scss', 'src/styles/style.scss');

@@ -1,2 +1,3 @@
-@import "bourbon";
-@import "breakpoint";
+<% gems.forEach(function(gem) { %>
+@import "<%= gem %>";
+<% }) %>

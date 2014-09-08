@@ -2,3 +2,5 @@ node_modules
 .sass-cache
 .bundle
 vendor
+dest
+github-pages.sh

@@ -19,6 +19,7 @@ If you want to use JavaScript and Sass libraries, the following require.
 - Choose jQuery, velocity, Three.js from JavaScript library (Optional)
 - Automagically wire up your Bower components with wiredep
 - Bourbon and Breakpoint for Sass (Optional)
+- Easy publish to Github Pages
 
 ## Getting Start
 
@@ -36,6 +37,15 @@ Run `yo idon`:
     yo idon
     
 Run `gulp` and start your coding!
+
+## Github Pages
+
+If you want to use Github Pages, you can use it with one command.
+With coding, the page is complete, please hit the following command.
+
+    npm run publish
+
+And then, your Project Pages site will be available at `http://username.github.io/projectname`
     
 ## License
 
