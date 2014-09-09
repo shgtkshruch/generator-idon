@@ -8,8 +8,8 @@ Yeoman generator for starting sketch HTML, CSS, and JavaScript
 - [gulp](http://gulpjs.com/)
 
 If you want to use JavaScript and Sass libraries, the following require.
+
 - [Bower](http://bower.io/) 
-- [Bundler](http://bundler.io/)
 
 ## Features
 
@@ -17,8 +17,8 @@ If you want to use JavaScript and Sass libraries, the following require.
 - Automagically complie Jade, Sass, CoffeeScript
 - Built-in server with Browser-sync
 - Choose jQuery, velocity, Three.js from JavaScript library (Optional)
-- Automagically wire up your Bower components with wiredep
 - Bourbon and Breakpoint for Sass (Optional)
+- Automagically wire up your Bower components with wiredep
 - Easy publish to Github Pages
 
 ## Getting Start
@@ -46,7 +46,7 @@ With coding, the page is complete, please hit the following command.
     npm run publish
 
 And then, your Project Pages site will be available at `http://username.github.io/projectname`
-    
-## License
+
+## Lincense
 
 [BSD lincense](http://opensource.org/licenses/bsd-license.php)

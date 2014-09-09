@@ -1,4 +1,0 @@
-source 'https://rubygems.org'
-<% gems.forEach(function(gem) { %>
-gem "<%= gem %>"
-<% }) %>

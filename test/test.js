@@ -6,7 +6,9 @@ describe('Yo idon generator', function() {
   describe('Run test', function() {
 
     var options = {
-      'skip-install': true
+      'skip-install': true,
+      'bower-install': false,
+      'npm-install': false
     };
 
     var expected = [
@@ -28,7 +30,7 @@ describe('Yo idon generator', function() {
     });
 
     it('create expected files', function(done) {
-      runGen.withOptions(options).withPrompt({jslib: [], gem: []})
+      runGen.withOptions(options).withPrompt({jslib: [], sasslib: []})
       .on('end', function() {
 
         assert.file([].concat(
@@ -36,18 +38,11 @@ describe('Yo idon generator', function() {
         ));
 
         assert.noFile([
-          'bower.json',
-          'Gemfile'
+          'bower.json'
         ]);
 
         assert.fileContent([
           ['package.json', /"name": "tmp"/]
-        ]);
-
-        assert.noFileContent([
-          ['gulpfile.coffee', /require: ['bourbon']/],
-          ['gulpfile.coffee', /bundleExec: true/],
-          ['src/styles/style.scss', /@import: "bourbon";/]
         ]);
 
         done();
@@ -55,7 +50,7 @@ describe('Yo idon generator', function() {
     });
 
     it('create expected bower files', function(done) {
-      runGen.withOptions(options).withPrompt({jslib: ['jquery'], gem: []})
+      runGen.withOptions(options).withPrompt({jslib: ['jquery'], sasslib: ['bourbon']})
       .on('end', function() {
 
         assert.file([].concat(
@@ -65,38 +60,14 @@ describe('Yo idon generator', function() {
 
         assert.fileContent([
           ['bower.json', /"name": "tmp"/],
-          ['bower.json', /jquery/]
-        ]);
-
-        assert.noFileContent([
-          ['bower.json', /three\.js/]
+          ['bower.json', /jquery/],
+          ['bower.json', /bourbon/]
         ]);
 
         done();
       });
     });
 
-    it('create expected Gem files', function(done) {
-      runGen.withOptions(options).withPrompt({jslib: [], gem: ['bourbon', 'breakpoint']})
-      .on('end', function() {
-
-        assert.file([].concat(
-          expected,
-          'Gemfile'
-        ));
-
-        assert.fileContent([
-          ['Gemfile', /gem "bourbon"/],
-          ['Gemfile', /gem "breakpoint"/],
-          ['src/styles/style.scss', /@import "bourbon";/],
-          ['src/styles/style.scss', /@import "breakpoint";/],
-          ['gulpfile.coffee', /require: \['bourbon','breakpoint'\]/],
-          ['gulpfile.coffee', /bundleExec: true/]
-        ]);
-
-        done();
-      });
-    });
   });
 });
 

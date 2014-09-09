@@ -31,13 +31,7 @@ gulp.task 'sass', ->
     .pipe $.plumber()
     .pipe $.filter '**/style.scss'
     .pipe $.rubySass
-      style: 'expanded' <% if (gems.length !== 0) { 
-        var requires = [];
-        gems.forEach(function(gem) {
-          requires.push("'" + gem + "'");
-        }) %>
-      require: [<%= requires %>] 
-      bundleExec: true <% } %>
+      style: 'expanded'
     .pipe $.autoprefixer 'last 2 version', 'ie 9', 'ie 8'
     .pipe gulp.dest config.dest + '/styles'
     .pipe browserSync.reload
