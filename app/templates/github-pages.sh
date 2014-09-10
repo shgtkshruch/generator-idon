@@ -14,6 +14,12 @@ then
   exit 0
 fi
 
+# If there is not $dest folder, run `gulp build`
+if [ ! -d $dest ]
+then
+  gulp build
+fi
+
 # Check gh-pages beanch exist
 if [ $(git branch --list $branch_ghpages) ]
 then
