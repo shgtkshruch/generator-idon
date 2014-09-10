@@ -1,4 +1,2 @@
-<% if (includeSass) { %>
-// bower:scss
-// endbower
-<% } %>
+<% if (includeSass) { %>// bower:scss
+// endbower <% } %>
