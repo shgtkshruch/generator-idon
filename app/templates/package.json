@@ -12,6 +12,7 @@
     "gulp-plumber": "*",
     "gulp-changed": "*",
     "gulp-filter": "*",
+    "gulp-useref": "*",
     "gulp-autoprefixer": "*",
     "gulp-load-plugins": "*",
     "coffee-script": "*"

@@ -65,7 +65,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   app: function() {
-    this.copy('index.jade', 'src/index.jade');
+    this.template('index.jade', 'src/index.jade');
     this.copy('style.scss', 'src/styles/style.scss');
     this.copy('script.coffee', 'src/scripts/script.coffee');
   },

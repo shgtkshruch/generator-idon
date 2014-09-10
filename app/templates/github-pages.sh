@@ -5,7 +5,7 @@ repo=$(git config --local --get remote.origin.url | sed -e "s/^.*\:\(.*\)\/\(.*\
 
 branch_now=$(git branch --list | grep '*' | awk '{print $2}')
 branch_ghpages=gh-pages
-dest=dest
+dest=dist
 
 # Check branch status
 if [ $(git status -s | wc -l) -ne 0 ]
