@@ -38,6 +38,9 @@ Run `yo idon`:
     
 Run `gulp` and start your coding!
 
+### Third-Party Dependencies
+To install dependencies, run `bower install --[save|save-dev] package-name` to get the files, then run `gulp wiredep` to add dependencies to your source code.
+
 ## Github Pages
 
 If you want to use Github Pages, you can use it with one command.
@@ -47,6 +50,10 @@ With coding, the page is complete, please hit the following command.
 
 And then, your Project Pages site will be available at `http://username.github.io/projectname`
 
-## Lincense
+## Options
 
-[BSD lincense](http://opensource.org/licenses/bsd-license.php)
+- `--skip-install`: Skip the automatic exectution of `bower` and `npm` after scaffolding has finished.
+
+## License
+
+[BSD license](http://opensource.org/licenses/bsd-license.php)

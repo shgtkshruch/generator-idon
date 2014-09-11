@@ -43,15 +43,11 @@ describe('Yo idon generator', function() {
 
         assert.fileContent([
           ['package.json', /"name": "tmp"/],
-          ['src/index.jade', /title tmp/],
-          ['gulpfile.coffee', /gulp\.watch.*\['jade'\]/],
-          ['gulpfile.coffee', /gulp\.task 'build', \['jade'/]
+          ['src/index.jade', /title tmp/]
         ]);
 
         assert.noFileContent([
-          ['src/index.jade', /build:js/],
-          ['src/styles/style.scss', /bower:scss/],
-          ['gulpfile.coffee', /gulp\.task 'html', \['jade'\]/]
+          ['src/styles/style.scss', /bower:scss/]
         ]);
 
         done();
@@ -71,11 +67,7 @@ describe('Yo idon generator', function() {
           ['bower.json', /"name": "tmp"/],
           ['bower.json', /jquery/],
           ['bower.json', /bourbon/],
-          ['src/index.jade', /build:js/],
-          ['src/styles/style.scss', /bower:scss/],
-          ['gulpfile.coffee', /gulp\.task 'html', \['jade'\]/],
-          ['gulpfile.coffee', /gulp\.watch.*\['html'\]/],
-          ['gulpfile.coffee', /gulp\.task 'build', \['html'/]
+          ['src/styles/style.scss', /bower:scss/]
         ]);
 
         done();
