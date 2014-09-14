@@ -1,4 +1,8 @@
-# Yo idon [![Build Status](https://travis-ci.org/shgtkshruch/generator-idon.svg?branch=master)](https://travis-ci.org/shgtkshruch/generator-idon)
+[![NPM version](https://badge.fury.io/js/generator-idon.svg)](http://badge.fury.io/js/generator-idon)
+[![Build Status](https://travis-ci.org/shgtkshruch/generator-idon.svg?branch=master)](https://travis-ci.org/shgtkshruch/generator-idon)
+[![Daivid](https://david-dm.org/shgtkshruch/generator-idon.png)](https://david-dm.org/shgtkshruch/generator-idon.png)
+
+# Yo idon
 
 Yeoman generator for starting sketch HTML, CSS, and JavaScript
 
