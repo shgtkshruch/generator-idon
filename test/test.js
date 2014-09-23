@@ -47,7 +47,10 @@ describe('Yo idon generator', function() {
         ]);
 
         assert.noFileContent([
-          ['src/styles/style.scss', /bower:scss/]
+          ['src/styles/style.scss', /bower:scss/],
+          ['src/index.jade', /bower:css/],
+          ['src/index.jade', /bower:js/],
+          ['gulpfile.coffee', /wiredep\(\)/]
         ]);
 
         done();
@@ -67,7 +70,10 @@ describe('Yo idon generator', function() {
           ['bower.json', /"name": "tmp"/],
           ['bower.json', /jquery/],
           ['bower.json', /bourbon/],
-          ['src/styles/style.scss', /bower:scss/]
+          ['src/index.jade', /bower:css/],
+          ['src/index.jade', /bower:js/],
+          ['src/styles/style.scss', /bower:scss/],
+          ['gulpfile.coffee', /wiredep\(\)/]
         ]);
 
         done();

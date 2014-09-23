@@ -3,7 +3,6 @@
 gulp = require 'gulp'
 $ = require('gulp-load-plugins')()
 browserSync = require 'browser-sync'
-wiredep = require('wiredep').stream
 
 config = 
   src: './src'
@@ -20,15 +19,7 @@ gulp.task 'browser-sync', ->
     notify: false
     reloadDelay: 0
 
-gulp.task 'html', ['jade'], ->
-  assets = $.useref.assets()
-  gulp.src config.dest + '/index.html'
-    .pipe wiredep()
-    .pipe assets
-    .pipe assets.restore()
-    .pipe $.useref()
-    .pipe gulp.dest config.dest
-
+<%if (includeJs || includeSass) { %>wiredep = require('wiredep').stream
 gulp.task 'wiredep', ->
   gulp.src config.src + '/index.jade'
     .pipe wiredep()
@@ -37,7 +28,16 @@ gulp.task 'wiredep', ->
   gulp.src config.src + '/styles/style.scss'
     .pipe wiredep
       devDependencies: true
-    .pipe gulp.dest config.src + '/styles'
+    .pipe gulp.dest config.src + '/styles'<% } %>
+
+gulp.task 'html', ['jade'], ->
+  assets = $.useref.assets()
+  gulp.src config.dest + '/index.html'<% if (includeJs || includeSass)  {%>
+    .pipe wiredep()<% } %>
+    .pipe assets
+    .pipe assets.restore()
+    .pipe $.useref()
+    .pipe gulp.dest config.dest
 
 gulp.task 'jade', ->
   gulp.src config.src + '/index.jade'
