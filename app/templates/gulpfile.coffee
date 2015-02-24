@@ -4,7 +4,7 @@ gulp = require 'gulp'
 $ = require('gulp-load-plugins')()
 browserSync = require 'browser-sync'
 
-config = 
+config =
   src: './src'
   dest: './dist'
 
@@ -49,11 +49,9 @@ gulp.task 'jade', ->
       stream: true
 
 gulp.task 'sass', ->
-  gulp.src config.src + '/styles/**/*.scss'
-    .pipe $.plumber()
-    .pipe $.filter '**/style.scss'
-    .pipe $.rubySass
-      style: 'expanded'
+    $.rubySass config.src + '/styles/style.scss'
+    .on 'error', (err) ->
+      console.error 'Error!', err.message
     .pipe $.autoprefixer 'last 2 version', 'ie 9', 'ie 8'
     .pipe gulp.dest config.dest + '/styles'
     .pipe browserSync.reload
