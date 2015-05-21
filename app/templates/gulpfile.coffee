@@ -18,6 +18,7 @@ gulp.task 'browser-sync', ->
         '/bower_components': 'bower_components'
     notify: false
     reloadDelay: 0
+    browser: 'Google Chrome Canary'
 
 <%if (includeJs || includeSass) { %>wiredep = require('wiredep').stream
 gulp.task 'wiredep', ->
