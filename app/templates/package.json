@@ -9,6 +9,7 @@
     "gulp-ruby-sass": "*",
     "browser-sync": "*",
     "gulp-coffee": "*",
+    "gulp-csscomb": "*",
     "gulp-plumber": "*",
     "gulp-changed": "*",
     "gulp-filter": "*",

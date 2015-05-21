@@ -75,6 +75,10 @@ module.exports = yeoman.generators.Base.extend({
     this.copy('gulpfile.coffee', 'gulpfile.coffee');
   },
 
+  csscomb: function () {
+    this.copy('csscomb.json', '.csscomb.json');
+  },
+
   bower: function() {
     var bower = {
       name: this._.slugify(this.appname),
@@ -105,7 +109,7 @@ module.exports = yeoman.generators.Base.extend({
 
     function injectWiredep() {
       if (!_this.options['bower-install']) {
-        return
+        return;
       }
 
       // JavaScri libraries
@@ -122,7 +126,7 @@ module.exports = yeoman.generators.Base.extend({
         src: 'src/styles/style.scss',
         devDependencies: true
       });
-    };
+    }
 
     if (!this.options['skip-install']) {
       this.installDependencies({
