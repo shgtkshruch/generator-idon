@@ -41,8 +41,10 @@ gulp.task 'html', ['jade'], ->
     .pipe gulp.dest config.dest
 
 gulp.task 'jade', ->
-  gulp.src config.src + '/index.jade'
+  gulp.src config.src + '/*.jade'
     .pipe $.plumber()
+    .pipe $.changed config.dest,
+      extension: '.html'
     .pipe $.jade
       pretty: true
     .pipe gulp.dest config.dest
@@ -70,7 +72,7 @@ gulp.task 'coffee', ->
       stream: true
 
 gulp.task 'default', ['build', 'browser-sync'], ->
-  gulp.watch config.src + '/index.jade', ['jade']
+  gulp.watch config.src + '/*.jade', ['jade']
   gulp.watch config.src + '/styles/*.scss', ['sass']
   gulp.watch config.src + '/scripts/*.coffee', ['coffee']
 
