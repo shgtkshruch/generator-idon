@@ -10,6 +10,7 @@
     "browser-sync": "*",
     "gulp-coffee": "*",
     "gulp-csscomb": "*",
+    "gulp-combine-media-queries": "*",
     "gulp-plumber": "*",
     "gulp-changed": "*",
     "gulp-filter": "*",
