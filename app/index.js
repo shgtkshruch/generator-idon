@@ -15,7 +15,7 @@ module.exports = yeoman.generators.Base.extend({
     var sassChoices = [];
 
     var jslibs = ['jQuery', 'velocity', 'Three.js'];
-    var sasslibs = ['bourbon', 'breakpoint'];
+    var sasslibs = ['bourbon', 'sass-mq'];
 
     var done = this.async();
 
