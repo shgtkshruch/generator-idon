@@ -4,21 +4,21 @@
     "publish": "./github-pages.sh"
   },
   "devDependencies": {
-    "gulp": "*",
-    "gulp-jade": "*",
-    "gulp-ruby-sass": "*",
     "browser-sync": "*",
-    "gulp-coffee": "*",
-    "gulp-csscomb": "*",
-    "gulp-combine-media-queries": "*",
-    "gulp-plumber": "*",
-    "gulp-changed": "*",
-    "gulp-filter": "*",
-    "gulp-useref": "*",
+    "coffee-script": "*",
+    "del": "*",
+    "gulp": "*",
     "gulp-autoprefixer": "*",
+    "gulp-changed": "*",
+    "gulp-coffee": "*",
+    "gulp-combine-media-queries": "*",
+    "gulp-csscomb": "*",
+    "gulp-jade": "*",
     "gulp-load-plugins": "*",
-    "wiredep": "*",
-    "coffee-script": "*"
+    "gulp-plumber": "*",
+    "gulp-ruby-sass": "*",
+    "gulp-useref": "*",
+    "wiredep": "*"
   }
 }
 
