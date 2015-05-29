@@ -72,7 +72,7 @@ gulp.task 'coffee', ->
     .pipe browserSync.reload
       stream: true
 
-gulp.task 'default', ['build', 'browser-sync'], ->
+gulp.task 'default', ['jade', 'sass', 'coffee', 'browser-sync'], ->
   gulp.watch config.src + '/*.jade', ['jade']
   gulp.watch config.src + '/styles/*.scss', ['sass']
   gulp.watch config.src + '/scripts/*.coffee', ['coffee']
