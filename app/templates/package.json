@@ -16,6 +16,7 @@
     "gulp-jade": "*",
     "gulp-load-plugins": "*",
     "gulp-plumber": "*",
+    "gulp-prettify": "*",
     "gulp-ruby-sass": "*",
     "gulp-useref": "*",
     "wiredep": "*"
