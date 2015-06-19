@@ -13,6 +13,7 @@
     "gulp-coffee": "*",
     "gulp-combine-media-queries": "*",
     "gulp-csscomb": "*",
+    "gulp-imagemin": "*",
     "gulp-jade": "*",
     "gulp-load-plugins": "*",
     "gulp-plumber": "*",

@@ -5,8 +5,8 @@ $ = require('gulp-load-plugins')()
 browserSync = require 'browser-sync'
 
 config =
-  src: './src'
-  dest: './dist'
+  src: 'src'
+  dest: 'dist'
 
 gulp.task 'browser-sync', ->
   browserSync
@@ -81,16 +81,24 @@ gulp.task 'coffee', ->
     .pipe browserSync.reload
       stream: true
 
+gulp.task 'image', ->
+  gulp.src config.src + '/images/*'
+    .pipe $.imagemin
+      progressive: true
+      interlaced: true
+    .pipe gulp.dest config.dest + '/images'
+
 gulp.task 'clean', ->
   del = require 'del'
   del ['dist/scripts/*.js', '!dist/scripts/{main,vendor}.js']
 
-gulp.task 'default', ['jade', 'sass', 'coffee', 'browser-sync'], ->
+gulp.task 'default', ['jade', 'sass', 'coffee', 'image', 'browser-sync'], ->
   gulp.watch config.src + '/*.jade', ['jade']
   gulp.watch config.src + '/styles/*.scss', ['sass']
   gulp.watch config.src + '/scripts/*.coffee', ['coffee']
+  gulp.watch config.src + '/images/*', ['image']
 
-gulp.task 'prebuild', ['html', 'sass', 'coffee']
+gulp.task 'prebuild', ['html', 'sass', 'coffee', 'image']
 
 gulp.task 'build', ['prebuild'], ->
   gulp.start 'clean'
