@@ -68,6 +68,8 @@ module.exports = yeoman.generators.Base.extend({
     this.template('index.jade', 'src/index.jade');
     this.copy('style.scss', 'src/styles/style.scss');
     this.copy('script.coffee', 'src/scripts/script.coffee');
+    this.mkdir('src/images');
+    this.mkdir('src/partials');
   },
 
   gulp: function() {
