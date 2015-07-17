@@ -41,7 +41,7 @@ gulp.task 'html', ['jade'], ->
     .pipe gulp.dest config.dest
 
 gulp.task 'jade', ->
-  gulp.src config.src + '/*.jade'
+  gulp.src config.src + '/**/*.jade'
     .pipe $.plumber()
     .pipe $.changed config.dest,
       extension: '.html'
@@ -90,10 +90,10 @@ gulp.task 'image', ->
 
 gulp.task 'clean', ->
   del = require 'del'
-  del ['dist/scripts/*.js', '!dist/scripts/{main,vendor}.js']
+  del ['dist/partials', 'dist/scripts/*.js', '!dist/scripts/{main,vendor}.js']
 
 gulp.task 'default', ['jade', 'sass', 'coffee', 'image', 'browser-sync'], ->
-  gulp.watch config.src + '/*.jade', ['jade']
+  gulp.watch config.src + '/**/*.jade', ['jade']
   gulp.watch config.src + '/styles/*.scss', ['sass']
   gulp.watch config.src + '/scripts/*.coffee', ['coffee']
   gulp.watch config.src + '/images/*', ['image']
