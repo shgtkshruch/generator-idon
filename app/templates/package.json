@@ -1,12 +1,10 @@
 {
   "name": "<%= _.slugify(appname) %>",
-  "scripts": {
-    "publish": "./github-pages.sh"
-  },
   "devDependencies": {
     "browser-sync": "^2.8.0",
     "coffee-script": "^1.9.3",
     "del": "^1.2.0",
+    "gh-pages": "0.3.1",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-changed": "^1.2.1",

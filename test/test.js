@@ -18,8 +18,7 @@ describe('Yo idon generator', function() {
       '.gitignore',
       '.csscomb.json',
       'package.json',
-      'gulpfile.coffee',
-      'github-pages.sh'
+      'gulpfile.coffee'
     ];
 
     var runGen;

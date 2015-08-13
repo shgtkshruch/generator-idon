@@ -3,6 +3,8 @@
 gulp = require 'gulp'
 $ = require('gulp-load-plugins')()
 browserSync = require 'browser-sync'
+ghpages = require 'gh-pages'
+path = require 'path'
 
 config =
   src: 'src'
@@ -91,6 +93,9 @@ gulp.task 'image', ->
 gulp.task 'clean', ->
   del = require 'del'
   del ['dist/partials', 'dist/scripts/*.js', '!dist/scripts/{main,vendor}.js']
+
+gulp.task 'publish', ->
+  ghpages.publish path.join __dirname, config.dest
 
 gulp.task 'default', ['jade', 'sass', 'coffee', 'image', 'browser-sync'], ->
   gulp.watch config.src + '/**/*.jade', ['jade']
