@@ -20,10 +20,13 @@
   },
   "homepage": "https://github.com/shgtkshruch/generator-idon",
   "dependencies": {
+    "mkdirp": "^0.5.1",
+    "underscore.string": "^3.1.1",
     "wiredep": "^2.1.0",
-    "yeoman-generator": "^0.18.0"
+    "yeoman-generator": "^0.20.2"
   },
   "devDependencies": {
-    "mocha": "^1.21.4"
+    "mocha": "^1.21.4",
+    "yeoman-assert": "^2.0.0"
   }
 }

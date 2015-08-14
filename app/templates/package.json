@@ -1,5 +1,5 @@
 {
-  "name": "<%= _.slugify(appname) %>",
+  "name": "<%= name %>",
   "devDependencies": {
     "browser-sync": "^2.8.0",
     "coffee-script": "^1.9.3",

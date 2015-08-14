@@ -1,10 +1,12 @@
-var yeoman = require('yeoman-generator');
+var generators = require('yeoman-generator');
 var fs = require('fs');
 var wiredep = require('wiredep');
+var _s = require('underscore.string');
+var mkdirp = require('mkdirp');
 
-module.exports = yeoman.generators.Base.extend({
+module.exports = generators.Base.extend({
   constructor: function() {
-    yeoman.generators.Base.apply(this, arguments);
+    generators.Base.apply(this, arguments);
 
     this.options['bower-install'] = false;
     this.options['npm-install'] = true;
@@ -38,6 +40,7 @@ module.exports = yeoman.generators.Base.extend({
       message: 'Do you want to use any Sass libraries?',
       choices: sassChoices
     }], function(answers) {
+
       this.jslibs = answers.jslib;
       this.sasslibs = answers.sasslib;
 
@@ -56,49 +59,65 @@ module.exports = yeoman.generators.Base.extend({
     }.bind(this));
   },
 
-  git: function() {
-    this.copy('gitignore', '.gitignore');
-  },
+  writing: {
+    git: function() {
+      this.copy('gitignore', '.gitignore');
+    },
 
-  app: function() {
-    this.template('index.jade', 'src/index.jade');
-    this.copy('style.scss', 'src/styles/style.scss');
-    this.copy('script.coffee', 'src/scripts/script.coffee');
-    this.mkdir('src/images');
-    this.mkdir('src/partials');
-  },
+    app: function() {
+      this.template(
+        'index.jade',
+        'src/index.jade',
+        {
+          name: _s.slugify(this.appname),
+          includeSass: this.includeSass,
+          includeJs: this.includeJs
+        }
+      );
+      this.copy('style.scss', 'src/styles/style.scss');
+      this.copy('script.coffee', 'src/scripts/script.coffee');
+      mkdirp('src/images');
+      mkdirp('src/partials');
+    },
 
-  gulp: function() {
-    this.template('package.json', 'package.json');
-    this.copy('gulpfile.coffee', 'gulpfile.coffee');
-  },
+    gulp: function() {
+      this.template(
+        'package.json',
+        'package.json',
+        {
+          name: _s.slugify(this.appname)
+        }
+      );
+      this.copy('gulpfile.coffee', 'gulpfile.coffee');
+    },
 
-  csscomb: function () {
-    this.copy('csscomb.json', '.csscomb.json');
-  },
+    csscomb: function () {
+      this.copy('csscomb.json', '.csscomb.json');
+    },
 
-  bower: function() {
-    var bower = {
-      name: this._.slugify(this.appname),
-      private: true,
-      dependencies: {},
-      devDependencies: {}
-    };
+    bower: function() {
+      var bower = {
+        name: _s.slugify(this.appname),
+        private: true,
+        dependencies: {},
+        devDependencies: {}
+      };
 
-    if (this.includeJs) {
-      this.jslibs.forEach(function(jslib) {
-        bower.dependencies[jslib] = '*';
-      });
-    }
+      if (this.includeJs) {
+        this.jslibs.forEach(function(jslib) {
+          bower.dependencies[jslib] = '*';
+        });
+      }
 
-     if (this.includeSass) {
-      this.sasslibs.forEach(function(sasslib) {
-        bower.devDependencies[sasslib] = '*';
-      });
-    }
+       if (this.includeSass) {
+        this.sasslibs.forEach(function(sasslib) {
+          bower.devDependencies[sasslib] = '*';
+        });
+      }
 
-     if (this.options['bower-install']) {
-      this.write('bower.json', JSON.stringify(bower, null, 2));
+       if (this.options['bower-install']) {
+        this.write('bower.json', JSON.stringify(bower, null, 2));
+      }
     }
   },
 
