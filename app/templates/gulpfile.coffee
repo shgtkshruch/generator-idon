@@ -3,6 +3,7 @@
 gulp = require 'gulp'
 $ = require('gulp-load-plugins')()
 browserSync = require 'browser-sync'
+del = require 'del'
 ghpages = require 'gh-pages'
 path = require 'path'
 
@@ -91,7 +92,6 @@ gulp.task 'image', ->
     .pipe gulp.dest config.dest + '/images'
 
 gulp.task 'clean', ->
-  del = require 'del'
   del ['dist/partials', 'dist/scripts/*.js', '!dist/scripts/{main,vendor}.js']
 
 gulp.task 'publish', ->
