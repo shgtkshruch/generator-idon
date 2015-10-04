@@ -68,7 +68,7 @@ gulp.task 'sass', ->
     .on 'error', (err) ->
       console.error 'Error!', err.message
     .pipe $.autoprefixer 'last 2 version', 'ie 9', 'ie 8'
-    .pipe $.combineMediaQueries()
+    .pipe $.combineMq()
     .pipe $.csscomb()
     .pipe gulp.dest config.dest + '/styles'
     .pipe browserSync.reload

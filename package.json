@@ -5,6 +5,9 @@
   "keywords": [
     "yeoman-generator"
   ],
+  "engines": {
+    "node": ">=4.1"
+  },
   "main": "app/index.js",
   "scripts": {
     "test": "mocha --reporter spec"
