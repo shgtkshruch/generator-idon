@@ -8,12 +8,7 @@ describe('general', function() {
       .inDir(path.join(__dirname, '.tmp'))
       .withOptions({
         'skip-install': true,
-        'bower-install': false,
         'npm-install': false
-      })
-      .withPrompts({
-        jslib: [],
-        sasslib: []
       })
       .on('end', done);
   });
@@ -30,18 +25,9 @@ describe('general', function() {
       'src/scripts/script.coffee'
     ]);
 
-    assert.noFile(['bower.json']);
-
     assert.fileContent([
       ['package.json', /"name": "tmp"/],
       ['src/index.jade', /title tmp/]
-    ]);
-
-    assert.noFileContent([
-      ['src/styles/style.scss', /bower:scss/],
-      ['src/index.jade', /bower:css/],
-      ['src/index.jade', /bower:js/],
-      ['gulpfile.coffee', /wiredep\(\)/]
     ]);
   });
 });

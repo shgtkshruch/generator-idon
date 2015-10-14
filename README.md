@@ -20,8 +20,6 @@ If you want to use JavaScript and Sass libraries, the following require.
 - CSS Autoprefixing
 - Automagically complie Jade, Sass, CoffeeScript
 - Built-in server with Browser-sync
-- Choose jQuery, velocity, Three.js from JavaScript library (Optional)
-- Bourbon and Breakpoint for Sass (Optional)
 - Automagically wire up your Bower components with wiredep
 - Easy publish to Github Pages
 

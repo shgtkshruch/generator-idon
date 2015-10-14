@@ -8,55 +8,7 @@ module.exports = generators.Base.extend({
   constructor: function() {
     generators.Base.apply(this, arguments);
 
-    this.options['bower-install'] = false;
     this.options['npm-install'] = true;
-  },
-
-  prompting: function() {
-    var jsChoices = [];
-    var sassChoices = [];
-
-    var jslibs = ['jQuery', 'velocity', 'Three.js'];
-    var sasslibs = ['bourbon', 'sass-mq'];
-
-    var done = this.async();
-
-    jslibs.forEach(function(jslib) {
-      jsChoices.push({name: jslib, value: jslib.toLowerCase()});
-    });
-
-    sasslibs.forEach(function(sasslib) {
-      sassChoices.push({name: sasslib, value: sasslib});
-    });
-
-    this.prompt([{
-      type: 'checkbox',
-      name: 'jslib',
-      message: 'Do you want to use any JavaScript libraries?',
-      choices: jsChoices
-    },{
-      type: 'checkbox',
-      name: 'sasslib',
-      message: 'Do you want to use any Sass libraries?',
-      choices: sassChoices
-    }], function(answers) {
-
-      this.jslibs = answers.jslib;
-      this.sasslibs = answers.sasslib;
-
-      function hasFeature(feat) {
-        return answers[feat].length !== 0;
-      }
-
-      this.includeJs = hasFeature('jslib');
-      this.includeSass = hasFeature('sasslib');
-
-      if (this.includeJs || this.includeSass) {
-        this.options['bower-install'] = true;
-      }
-
-      done();
-    }.bind(this));
   },
 
   writing: {
@@ -94,68 +46,14 @@ module.exports = generators.Base.extend({
     csscomb: function () {
       this.copy('csscomb.json', '.csscomb.json');
     },
-
-    bower: function() {
-      var bower = {
-        name: _s.slugify(this.appname),
-        private: true,
-        dependencies: {},
-        devDependencies: {}
-      };
-
-      if (this.includeJs) {
-        this.jslibs.forEach(function(jslib) {
-          bower.dependencies[jslib] = '*';
-        });
-      }
-
-       if (this.includeSass) {
-        this.sasslibs.forEach(function(sasslib) {
-          bower.devDependencies[sasslib] = '*';
-        });
-      }
-
-       if (this.options['bower-install']) {
-        this.write('bower.json', JSON.stringify(bower, null, 2));
-      }
-    }
   },
 
   install: function() {
-    var _this = this;
-
-    function injectWiredep() {
-      if (!_this.options['bower-install']) {
-        return;
-      }
-
-      // JavaScri libraries
-      wiredep({
-        directory: 'bower_components',
-        bowerJson: JSON.parse(fs.readFileSync('./bower.json')),
-        src: 'src/index.jade',
-      });
-
-      // Sass libraries
-      wiredep({
-        directory: 'bower_components',
-        bowerJson: JSON.parse(fs.readFileSync('./bower.json')),
-        src: 'src/styles/style.scss',
-        devDependencies: true
-      });
-    }
-
     if (!this.options['skip-install']) {
       this.installDependencies({
-        bower: this.options['bower-install'],
-        npm: this.options['npm-install'],
-        skipInstall: this.options['skip-install'],
-        callback: function() {
-          injectWiredep();
-        }
+        npm: this.options['npm-install']
       });
     }
   }
-
 });
 

@@ -2,6 +2,7 @@
 
 gulp = require 'gulp'
 $ = require('gulp-load-plugins')()
+wiredep = require('wiredep').stream
 browserSync = require 'browser-sync'
 del = require 'del'
 ghpages = require 'gh-pages'
@@ -23,21 +24,15 @@ gulp.task 'browser-sync', ->
     reloadDelay: 0
     browser: 'Google Chrome Canary'
 
-<%if (includeJs || includeSass) { %>wiredep = require('wiredep').stream
 gulp.task 'wiredep', ->
   gulp.src config.src + '/index.jade'
     .pipe wiredep()
     .pipe gulp.dest config.src
 
-  gulp.src config.src + '/styles/style.scss'
-    .pipe wiredep
-      devDependencies: true
-    .pipe gulp.dest config.src + '/styles'<% } %>
-
 gulp.task 'html', ['jade'], ->
   assets = $.useref.assets()
-  gulp.src config.dest + '/index.html'<% if (includeJs || includeSass)  {%>
-    .pipe wiredep()<% } %>
+  gulp.src config.dest + '/index.html'
+    .pipe wiredep()
     .pipe assets
     .pipe assets.restore()
     .pipe $.useref()
