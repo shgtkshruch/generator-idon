@@ -59,9 +59,8 @@ gulp.task 'jade', ->
       stream: true
 
 gulp.task 'sass', ->
-    $.rubySass config.src + '/styles/style.scss'
-    .on 'error', (err) ->
-      console.error 'Error!', err.message
+  gulp.src config.src + '/styles/style.scss'
+    .pipe $.sass().on 'error', $.sass.logError
     .pipe $.autoprefixer 'last 2 version', 'ie 9', 'ie 8'
     .pipe $.combineMq()
     .pipe $.csscomb()
