@@ -51,7 +51,8 @@ module.exports = generators.Base.extend({
   install: function() {
     if (!this.options['skip-install']) {
       this.installDependencies({
-        npm: this.options['npm-install']
+        npm: this.options['npm-install'],
+        bower: false
       });
     }
   }
