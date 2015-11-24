@@ -17,10 +17,13 @@ If you want to use JavaScript and Sass libraries, the following require.
 
 ## Features
 
-- CSS Autoprefixing
 - Automagically complie Jade, Sass, CoffeeScript
 - Built-in server with Browser-sync
-- Automagically wire up your Bower components with wiredep
+- CSS Autoprefixing with [autoprefixer](https://github.com/postcss/autoprefixer)
+- Sorts CSS properties fast and automatically with [css-property-sorter](https://github.com/Siilwyn/css-property-sorter)
+- Automatically formats CSS with [cssfmt](https://github.com/morishitter/cssfmt) 
+- Automagically wire up your Bower components with [wiredep](https://github.com/taptapship/wiredep)
+- Awesome image optimization
 - Easy publish to Github Pages
 
 ## Getting Start
