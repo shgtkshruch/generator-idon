@@ -41,11 +41,7 @@ module.exports = generators.Base.extend({
         }
       );
       this.copy('gulpfile.coffee', 'gulpfile.coffee');
-    },
-
-    csscomb: function () {
-      this.copy('csscomb.json', '.csscomb.json');
-    },
+    }
   },
 
   install: function() {

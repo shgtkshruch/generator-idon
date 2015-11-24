@@ -17,7 +17,6 @@ describe('general', function() {
 
     assert.file([
       '.gitignore',
-      '.csscomb.json',
       'package.json',
       'gulpfile.coffee',
       'src/index.jade',

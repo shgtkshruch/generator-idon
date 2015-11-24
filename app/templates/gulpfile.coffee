@@ -2,8 +2,12 @@
 
 gulp = require 'gulp'
 $ = require('gulp-load-plugins')()
-wiredep = require('wiredep').stream
 browserSync = require 'browser-sync'
+wiredep = require('wiredep').stream
+autoprefixer = require 'autoprefixer'
+propsort = require 'css-property-sorter'
+mqpacker = require 'css-mqpacker'
+fmt = require 'cssfmt'
 del = require 'del'
 ghpages = require 'gh-pages'
 path = require 'path'
@@ -61,9 +65,14 @@ gulp.task 'jade', ->
 gulp.task 'sass', ->
   gulp.src config.src + '/styles/style.scss'
     .pipe $.sass().on 'error', $.sass.logError
-    .pipe $.autoprefixer 'last 2 version', 'ie 9', 'ie 8'
-    .pipe $.combineMq()
-    .pipe $.csscomb()
+    .pipe $.postcss [
+      autoprefixer
+        browsers: ['last 2 version', 'ie 9', 'ie 8']
+      propsort
+        order: 'smacss'
+      mqpacker
+      fmt
+    ]
     .pipe gulp.dest config.dest + '/styles'
     .pipe browserSync.reload
       stream: true
