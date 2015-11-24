@@ -25,7 +25,6 @@
   "dependencies": {
     "mkdirp": "^0.5.1",
     "underscore.string": "^3.1.1",
-    "wiredep": "^2.1.0",
     "yeoman-generator": "^0.20.2"
   },
   "devDependencies": {

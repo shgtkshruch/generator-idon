@@ -1,6 +1,5 @@
 var generators = require('yeoman-generator');
 var fs = require('fs');
-var wiredep = require('wiredep');
 var _s = require('underscore.string');
 var mkdirp = require('mkdirp');
 
