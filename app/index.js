@@ -9,6 +9,20 @@ module.exports = generators.Base.extend({
     this.options['npm-install'] = true;
   },
 
+  prompting: function () {
+    var done = this.async();
+
+    this.prompt([{
+      type: 'confirm',
+      name: 'useBower',
+      message: 'Would you like to use Bower as package manager?',
+      default: false
+    }], function (answers) {
+      this.useBower = answers.useBower;
+      done();
+    }.bind(this));
+  },
+
   writing: {
     git: function() {
       this.copy('gitignore', '.gitignore');
@@ -20,8 +34,7 @@ module.exports = generators.Base.extend({
         'src/index.jade',
         {
           name: _s.slugify(this.appname),
-          includeSass: this.includeSass,
-          includeJs: this.includeJs
+          useBower: this.useBower
         }
       );
       this.copy('style.scss', 'src/styles/style.scss');
@@ -35,10 +48,17 @@ module.exports = generators.Base.extend({
         'package.json',
         'package.json',
         {
-          name: _s.slugify(this.appname)
+          name: _s.slugify(this.appname),
+          useBower: this.useBower
         }
       );
-      this.copy('gulpfile.coffee', 'gulpfile.coffee');
+      this.template(
+        'gulpfile.coffee',
+        'gulpfile.coffee',
+        {
+          useBower: this.useBower
+        }
+      );
     }
   },
 

@@ -2,8 +2,8 @@
 
 gulp = require 'gulp'
 $ = require('gulp-load-plugins')()
-browserSync = require 'browser-sync'
-wiredep = require('wiredep').stream
+browserSync = require 'browser-sync'<% if (useBower) { %>
+wiredep = require('wiredep').stream<% } %>
 autoprefixer = require 'autoprefixer'
 propsort = require 'css-property-sorter'
 mqpacker = require 'css-mqpacker'
@@ -27,16 +27,15 @@ gulp.task 'browser-sync', ->
     notify: false
     reloadDelay: 0
     browser: 'Google Chrome Canary'
-
+<%if (useBower) { %>
 gulp.task 'wiredep', ->
   gulp.src config.src + '/index.jade'
     .pipe wiredep()
     .pipe gulp.dest config.src
-
+<% } %>
 gulp.task 'html', ['jade'], ->
   assets = $.useref.assets()
   gulp.src config.dest + '/index.html'
-    .pipe wiredep()
     .pipe assets
     .pipe assets.restore()
     .pipe $.useref()

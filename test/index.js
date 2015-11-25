@@ -6,15 +6,12 @@ describe('general', function() {
   before(function(done) {
     helpers.run(path.join(__dirname, '../app'))
       .inDir(path.join(__dirname, '.tmp'))
-      .withOptions({
-        'skip-install': true,
-        'npm-install': false
-      })
+      .withOptions({'skip-install': true})
+      .withPrompts({useBower: false})
       .on('end', done);
   });
 
   it('create expected files', function() {
-
     assert.file([
       '.gitignore',
       'package.json',
@@ -25,8 +22,8 @@ describe('general', function() {
     ]);
 
     assert.fileContent([
-      ['package.json', /"name": "tmp"/],
-      ['src/index.jade', /title tmp/]
+      ['package.json', '"name": "tmp"'],
+      ['src/index.jade', 'title tmp']
     ]);
   });
 });
