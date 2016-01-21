@@ -5,7 +5,7 @@ $ = require('gulp-load-plugins')()
 browserSync = require 'browser-sync'<% if (useBower) { %>
 wiredep = require('wiredep').stream<% } %>
 autoprefixer = require 'autoprefixer'
-propsort = require 'css-property-sorter'
+sorting = require 'postcss-sorting'
 mqpacker = require 'css-mqpacker'
 fmt = require 'cssfmt'
 del = require 'del'
@@ -67,8 +67,8 @@ gulp.task 'sass', ->
     .pipe $.postcss [
       autoprefixer
         browsers: ['last 2 version', 'ie 9', 'ie 8']
-      propsort
-        order: 'smacss'
+      sorting
+        'sort-order': 'yandex'
       mqpacker
       fmt
     ]
