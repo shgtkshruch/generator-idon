@@ -28,6 +28,14 @@ module.exports = generators.Base.extend({
       this.copy('gitignore', '.gitignore');
     },
 
+    babel: function () {
+      this.copy('babelrc', '.babelrc');
+    },
+
+    eslint: function () {
+      this.copy('eslintrc', '.eslintrc');
+    },
+
     app: function() {
       this.template(
         'index.jade',
@@ -53,8 +61,8 @@ module.exports = generators.Base.extend({
         }
       );
       this.template(
-        'gulpfile.coffee',
-        'gulpfile.coffee',
+        'gulpfile.babel.js',
+        'gulpfile.babel.js',
         {
           useBower: this.useBower
         }

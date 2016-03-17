@@ -15,7 +15,7 @@ describe('Bower feature', function() {
     it('create expected files', function() {
       assert.fileContent([
         ['package.json', 'wiredep'],
-        ['gulpfile.coffee', 'gulp.task \'wiredep\''],
+        ['gulpfile.babel.js', 'gulp.task(\'wiredep\''],
         ['src/index.jade', 'bower:css'],
         ['src/index.jade', 'bower:js']
       ]);
@@ -34,7 +34,7 @@ describe('Bower feature', function() {
     it('create expected files', function() {
       assert.noFileContent([
         ['package.json', 'wiredep'],
-        ['gulpfile.coffee', 'gulp.task \'wiredep\''],
+        ['gulpfile.babel.js', 'gulp.task(\'wiredep\''],
         ['src/index.jade', 'bower:css'],
         ['src/index.jade', 'bower:js']
       ]);

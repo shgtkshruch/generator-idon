@@ -14,8 +14,10 @@ describe('general', function() {
   it('create expected files', function() {
     assert.file([
       '.gitignore',
+      '.babelrc',
+      '.eslintrc',
       'package.json',
-      'gulpfile.coffee',
+      'gulpfile.babel.js',
       'src/index.jade',
       'src/styles/style.scss',
       'src/scripts/script.coffee'
