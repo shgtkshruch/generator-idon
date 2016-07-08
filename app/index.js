@@ -46,7 +46,7 @@ module.exports = generators.Base.extend({
         }
       );
       this.copy('style.scss', 'src/styles/style.scss');
-      this.copy('script.coffee', 'src/scripts/script.coffee');
+      this.copy('script.js', 'src/scripts/script.js');
       mkdirp('src/images');
       mkdirp('src/partials');
     },

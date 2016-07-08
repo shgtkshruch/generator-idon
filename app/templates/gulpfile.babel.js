@@ -79,13 +79,15 @@ gulp.task('sass', () => {
     .pipe(bs.stream());
 });
 
-gulp.task('coffee', () => {
-  return gulp.src(config.src + '/scripts/*.coffee')
+gulp.task('js', () => {
+  return gulp.src(config.src + '/scripts/*.js')
     .pipe($.plumber())
     .pipe($.changed(config.dest, {
       extension: '.js'
     }))
-    .pipe($.coffee())
+    .pipe($.babel({
+      presets: ['es2015']
+    }))
     .pipe(gulp.dest(config.dest + '/scripts'))
     .pipe(bs.stream());
 });
@@ -107,13 +109,13 @@ gulp.task('publish', () => {
   return ghpages.publish(path.join(__dirname, config.dest));
 });
 
-gulp.task('default', ['jade', 'sass', 'coffee', 'image', 'browserSync'], () => {
+gulp.task('default', ['jade', 'sass', 'js', 'image', 'browserSync'], () => {
   gulp.watch(config.src + '/**/*.jade', ['jade']);
   gulp.watch(config.src + '/styles/*.scss', ['sass']);
-  gulp.watch(config.src + '/scripts/*.coffee', ['coffee']);
+  gulp.watch(config.src + '/scripts/*.js', ['js]);
   gulp.watch(config.src + '/images/*', ['image']);
 });
 
-gulp.task('build', ['html', 'sass', 'coffee', 'image'], () => {
+gulp.task('build', ['html', 'sass', 'js', 'image'], () => {
   gulp.start('clean');
 });

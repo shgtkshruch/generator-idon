@@ -20,7 +20,7 @@ describe('general', function() {
       'gulpfile.babel.js',
       'src/index.jade',
       'src/styles/style.scss',
-      'src/scripts/script.coffee'
+      'src/scripts/script.js'
     ]);
 
     assert.fileContent([
