@@ -4,12 +4,12 @@ var path = require('path');
 
 describe('Bower feature', function() {
   describe('on', function () {
-    before(function(done) {
-      helpers.run(path.join(__dirname, '../app'))
+    before(function() {
+      return helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(__dirname, '.tmp'))
         .withOptions({'skip-install': true})
         .withPrompts({useBower: true})
-        .on('end', done);
+        .toPromise();
     });
 
     it('create expected files', function() {
@@ -23,12 +23,12 @@ describe('Bower feature', function() {
   });
 
   describe('off', function () {
-    before(function(done) {
-      helpers.run(path.join(__dirname, '../app'))
+    before(function() {
+      return helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(__dirname, '.tmp'))
         .withOptions({'skip-install': true})
         .withPrompts({useBower: false})
-        .on('end', done);
+        .toPromise();
     });
 
     it('create expected files', function() {

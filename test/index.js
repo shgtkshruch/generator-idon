@@ -3,12 +3,12 @@ var assert = require('yeoman-assert');
 var path = require('path');
 
 describe('general', function() {
-  before(function(done) {
-    helpers.run(path.join(__dirname, '../app'))
+  before(function() {
+    return helpers.run(path.join(__dirname, '../app'))
       .inDir(path.join(__dirname, '.tmp'))
       .withOptions({'skip-install': true})
       .withPrompts({useBower: false})
-      .on('end', done);
+      .toPromise();
   });
 
   it('create expected files', function() {

@@ -10,16 +10,13 @@ module.exports = generators.Base.extend({
   },
 
   prompting: function () {
-    var done = this.async();
-
-    this.prompt([{
+    return this.prompt([{
       type: 'confirm',
       name: 'useBower',
       message: 'Would you like to use Bower as package manager?',
       default: false
-    }], function (answers) {
+    }]).then(function (answers) {
       this.useBower = answers.useBower;
-      done();
     }.bind(this));
   },
 
