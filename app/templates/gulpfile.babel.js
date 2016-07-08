@@ -112,7 +112,7 @@ gulp.task('publish', () => {
 gulp.task('default', ['jade', 'sass', 'js', 'image', 'browserSync'], () => {
   gulp.watch(config.src + '/**/*.jade', ['jade']);
   gulp.watch(config.src + '/styles/*.scss', ['sass']);
-  gulp.watch(config.src + '/scripts/*.js', ['js]);
+  gulp.watch(config.src + '/scripts/*.js', ['js']);
   gulp.watch(config.src + '/images/*', ['image']);
 });
 
