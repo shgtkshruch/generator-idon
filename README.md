@@ -11,17 +11,17 @@ Yeoman generator for starting sketch HTML, CSS, and JavaScript
 - [Yeoman](http://yeoman.io/)
 - [gulp](http://gulpjs.com/)
 
-If you want to use JavaScript and Sass libraries, the following require.
+If you want to use JavaScript and CSS libraries, the following require.
 
 - [Bower](http://bower.io/)
 
 ## Features
 
-- Automagically complie Jade, Sass, CoffeeScript
+- Automagically complie Jade, Sass, Babel
 - Built-in server with Browser-sync
 - CSS Autoprefixing with [autoprefixer](https://github.com/postcss/autoprefixer)
 - Sorts CSS properties fast and automatically with [postcss-sorting](https://github.com/hudochenkov/postcss-sorting)
-- Automatically formats CSS with [cssfmt](https://github.com/morishitter/cssfmt)
+- Automatically formats CSS with [stylefmt](https://github.com/morishitter/stylefmt)
 - Automagically wire up your Bower components with [wiredep](https://github.com/taptapship/wiredep)
 - Awesome image optimization
 - Easy publish to Github Pages
