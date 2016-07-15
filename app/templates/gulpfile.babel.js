@@ -5,7 +5,7 @@ import {stream as wiredep}from 'wiredep';<% } %>
 import autoprefixer from 'autoprefixer';
 import sorting from 'postcss-sorting';
 import mqpacker from 'css-mqpacker';
-import fmt from 'cssfmt';
+import stylefmt from 'stylefmt';
 import del from 'del';
 import ghpages from 'gh-pages';
 import path from 'path';
@@ -73,7 +73,7 @@ gulp.task('sass', () => {
       autoprefixer({browers: ['last 2 version', 'ie9', 'ie8']}),
       sorting({'sort-order': 'yandex'}),
       mqpacker,
-      fmt
+      stylefmt
     ]))
     .pipe(gulp.dest(config.dest + '/styles'))
     .pipe(bs.stream());
