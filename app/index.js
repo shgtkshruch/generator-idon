@@ -35,8 +35,8 @@ module.exports = generators.Base.extend({
 
     app: function() {
       this.template(
-        'index.jade',
-        'src/index.jade',
+        'index.pug',
+        'src/index.pug',
         {
           name: _s.slugify(this.appname),
           useBower: this.useBower

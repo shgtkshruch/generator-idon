@@ -37,19 +37,19 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest(config.src));
 });
 <% } %>
-gulp.task('html', ['jade'], () => {
+gulp.task('html', ['pug'], () => {
   return gulp.src(config.dest + '/index.html')
     .pipe($.useref())
     .pipe(gulp.dest(config.dest));
 });
 
-gulp.task('jade', () => {
-  return gulp.src(config.src + '/**/*.jade')
+gulp.task('pug', () => {
+  return gulp.src(config.src + '/**/*.pug')
     .pipe($.plumber())
     .pipe($.changed(config.dest, {
       extension: '.html'
     }))
-    .pipe($.jade({
+    .pipe($.pug({
       pretty: true
     }))
     .pipe($.prettify({
@@ -109,8 +109,8 @@ gulp.task('publish', () => {
   return ghpages.publish(path.join(__dirname, config.dest));
 });
 
-gulp.task('default', ['jade', 'sass', 'js', 'image', 'browserSync'], () => {
-  gulp.watch(config.src + '/**/*.jade', ['jade']);
+gulp.task('default', ['pug', 'sass', 'js', 'image', 'browserSync'], () => {
+  gulp.watch(config.src + '/**/*.pug', ['pug']);
   gulp.watch(config.src + '/styles/*.scss', ['sass']);
   gulp.watch(config.src + '/scripts/*.js', ['js']);
   gulp.watch(config.src + '/images/*', ['image']);

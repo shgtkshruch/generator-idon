@@ -18,14 +18,14 @@ describe('general', function() {
       '.eslintrc',
       'package.json',
       'gulpfile.babel.js',
-      'src/index.jade',
+      'src/index.pug',
       'src/styles/style.scss',
       'src/scripts/script.js'
     ]);
 
     assert.fileContent([
       ['package.json', '"name": "tmp"'],
-      ['src/index.jade', 'title tmp']
+      ['src/index.pug', 'title tmp']
     ]);
   });
 });
