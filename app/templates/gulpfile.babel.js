@@ -105,7 +105,7 @@ gulp.task('clean:build', () => {
   ]);
 });
 
-gulp.task('publish', ['build'], () => {
+gulp.task('ghpages', () => {
   return ghpages.publish(path.join(__dirname, 'dist'));
 });
 
@@ -119,3 +119,8 @@ gulp.task('default', ['pug', 'sass', 'js', 'image', 'browserSync'], () => {
 gulp.task('build', () => {
   runSequence('clean:all', ['html', 'image'], 'clean:build');
 });
+
+gulp.task('publish', () => {
+  runSequence('build', 'ghpages');
+});
+
