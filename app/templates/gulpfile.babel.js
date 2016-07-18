@@ -115,11 +115,15 @@ gulp.task('ghpages', () => {
   return ghpages.publish(path.join(__dirname, 'dist'));
 });
 
-gulp.task('default', ['pug', 'sass', 'js', 'image', 'browserSync'], () => {
+gulp.task('watch', () => {
   gulp.watch('src/**/*.pug', ['pug']);
   gulp.watch('src/styles/*.scss', ['sass']);
   gulp.watch('src/scripts/*.js', ['js']);
   gulp.watch('src/images/*', ['image']);
+});
+
+gulp.task('default', () => {
+  runSequence(['pug', 'sass', 'js', 'image'], 'browserSync', 'watch');
 });
 
 gulp.task('build', () => {
