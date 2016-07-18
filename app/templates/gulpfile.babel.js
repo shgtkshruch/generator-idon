@@ -25,7 +25,13 @@ gulp.task('browserSync', () => {
     browser: 'Google Chrome Canary'
   });
 });
-
+<% if (useBower) { %>
+gulp.task('wiredep', () => {
+  return gulp.src('src/index.pug')
+    .pipe(wiredep())
+    .pipe(gulp.dest('src'));
+});
+<% } %>
 gulp.task('html', ['pug', 'sass', 'js'], () => {
   return gulp.src('dist/index.html')
     .pipe($.useref())
