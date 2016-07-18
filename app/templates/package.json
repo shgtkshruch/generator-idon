@@ -24,6 +24,7 @@
     "gulp-uglify": "^1.5.4",
     "gulp-useref": "^3.1.0",
     "postcss-sorting": "1.6.0",
+    "run-sequence": "^1.2.2",
     "stylefmt": "^4.1.1"<% if (useBower) { %>,
     "wiredep": "^4.0.0"<% } %>
   }

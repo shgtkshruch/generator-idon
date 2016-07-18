@@ -8,6 +8,7 @@ import stylefmt from 'stylefmt';
 import del from 'del';
 import ghpages from 'gh-pages';
 import path from 'path';
+import runSequence from 'run-sequence';
 
 const $ = gulpLoadPlugins();
 const bs = browserSync.create();
@@ -92,6 +93,18 @@ gulp.task('image', () => {
     .pipe(gulp.dest('dist/images'));
 });
 
+gulp.task('clean:all', () => {
+  return del('dist');
+});
+
+gulp.task('clean:build', () => {
+  return del([
+    'dist/partials',
+    'dist/{styles,scripts}/*',
+    '!dist/{styles,scripts}/{main,vendor}.*',
+  ]);
+});
+
 gulp.task('publish', ['build'], () => {
   return ghpages.publish(path.join(__dirname, 'dist'));
 });
@@ -103,12 +116,6 @@ gulp.task('default', ['pug', 'sass', 'js', 'image', 'browserSync'], () => {
   gulp.watch('src/images/*', ['image']);
 });
 
-gulp.task('build', ['html', 'image'], () => {
-  return del([
-    'dist/partials',
-    'dist/styles/*.css',
-    'dist/scripts/*.js',
-    '!dist/styles/{main, vendor}.css',
-    '!dist/scripts/{main, vendor}.js'
-  ]);
+gulp.task('build', () => {
+  runSequence('clean:all', ['html', 'image'], 'clean:build');
 });
