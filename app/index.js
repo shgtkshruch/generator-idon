@@ -42,8 +42,8 @@ module.exports = generators.Base.extend({
           useBower: this.useBower
         }
       );
-      this.copy('style.scss', 'src/styles/style.scss');
-      this.copy('script.js', 'src/scripts/script.js');
+      this.copy('main.scss', 'src/styles/main.scss');
+      this.copy('main.js', 'src/scripts/main.js');
       mkdirp('src/images');
       mkdirp('src/partials');
     },

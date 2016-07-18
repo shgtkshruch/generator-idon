@@ -19,8 +19,8 @@ describe('general', function() {
       'package.json',
       'gulpfile.babel.js',
       'src/index.pug',
-      'src/styles/style.scss',
-      'src/scripts/script.js'
+      'src/styles/main.scss',
+      'src/scripts/main.js'
     ]);
 
     assert.fileContent([

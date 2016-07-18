@@ -63,7 +63,7 @@ gulp.task('pug', () => {
 });
 
 gulp.task('sass', () => {
-  return gulp.src(config.src + '/styles/style.scss')
+  return gulp.src(config.src + '/styles/main.scss')
     .pipe($.sass().on('error', $.sass.logError))
     .pipe($.postcss([
       autoprefixer({browers: ['last 2 version', 'ie9', 'ie8']}),
