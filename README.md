@@ -17,7 +17,7 @@ If you want to use JavaScript and CSS libraries, the following require.
 
 ## Features
 
-- Automagically complie Jade, Sass, Babel
+- Automagically complie Pug, Sass, Babel
 - Built-in server with Browser-sync
 - CSS Autoprefixing with [autoprefixer](https://github.com/postcss/autoprefixer)
 - Sorts CSS properties fast and automatically with [postcss-sorting](https://github.com/hudochenkov/postcss-sorting)
@@ -53,7 +53,7 @@ With coding, the page is complete, please hit the following command.
 
     gulp publish
 
-And then, your Project Pages site will be available at `http://username.github.io/projectname`
+And then, your Project Pages site will be available at `https://username.github.io/projectname`
 
 ## Options
 
