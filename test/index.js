@@ -17,7 +17,7 @@ describe('general', function() {
       '.babelrc',
       '.eslintrc',
       'package.json',
-      'gulpfile.babel.js',
+      'gulpfile.js',
       'src/index.pug',
       'src/styles/main.scss',
       'src/scripts/main.js'

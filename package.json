@@ -6,7 +6,7 @@
     "yeoman-generator"
   ],
   "engines": {
-    "node": ">=4.1"
+    "node": ">=4"
   },
   "main": "app/index.js",
   "scripts": {

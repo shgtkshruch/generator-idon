@@ -58,8 +58,8 @@ module.exports = generators.Base.extend({
         }
       );
       this.template(
-        'gulpfile.babel.js',
-        'gulpfile.babel.js',
+        'gulpfile.js',
+        'gulpfile.js',
         {
           useBower: this.useBower
         }

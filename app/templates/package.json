@@ -1,5 +1,8 @@
 {
   "name": "<%= name %>",
+  "engins": {
+    "node": ">=4"
+  },
   "devDependencies": {
     "autoprefixer": "^6.3.7",
     "babel-core": "^6.10.4",

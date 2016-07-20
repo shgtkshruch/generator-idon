@@ -1,14 +1,14 @@
-import gulp from 'gulp';
-import gulpLoadPlugins from 'gulp-load-plugins';
-import browserSync from 'browser-sync';
-import autoprefixer from 'autoprefixer';
-import sorting from 'postcss-sorting';
-import mqpacker from 'css-mqpacker';
-import stylefmt from 'stylefmt';
-import del from 'del';
-import ghpages from 'gh-pages';
-import path from 'path';
-import runSequence from 'run-sequence';
+const gulp = require('gulp');
+const gulpLoadPlugins = require('gulp-load-plugins');
+const browserSync = require ('browser-sync');
+const autoprefixer = require('autoprefixer');
+const sorting = require('postcss-sorting');
+const mqpacker = require('css-mqpacker');
+const stylefmt = require('stylefmt');
+const del = require('del');
+const ghpages = require('gh-pages');
+const path = require('path');
+const runSequence = require('run-sequence');
 
 const $ = gulpLoadPlugins();
 const bs = browserSync.create();
