@@ -29,7 +29,7 @@
     "postcss-sorting": "1.6.0",
     "run-sequence": "^1.2.2",
     "stylefmt": "^4.1.1"<% if (useBower) { %>,
-    "wiredep": "^4.0.0"<% } %>
+    "wiredep": "git@github.com:taptapship/wiredep.git#0c247f93656147789c6aba5d8fb8decd45ea449c"<% } %>
   }
 }
 

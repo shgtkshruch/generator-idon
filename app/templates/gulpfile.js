@@ -9,6 +9,9 @@ const del = require('del');
 const ghpages = require('gh-pages');
 const path = require('path');
 const runSequence = require('run-sequence');
+<% if (useBower) { %>
+const wiredep = require('wiredep').stream;
+<% } %>
 
 const $ = gulpLoadPlugins();
 const bs = browserSync.create();
