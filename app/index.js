@@ -67,6 +67,16 @@ module.exports = generators.Base.extend({
     }
   },
 
+  bower: function () {
+    if (this.useBower) {
+      var bowerJson = {
+        name: _s.slugify(this.appname),
+        dependencies: {}
+      };
+      this.fs.writeJSON('bower.json', bowerJson);
+    }
+  },
+
   install: function() {
     if (!this.options['skip-install']) {
       this.installDependencies({

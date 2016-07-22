@@ -13,6 +13,8 @@ describe('Bower feature', function() {
     });
 
     it('create expected files', function() {
+      assert.file(['bower.json']);
+
       assert.fileContent([
         ['package.json', 'wiredep'],
         ['gulpfile.js', 'gulp.task(\'wiredep\''],
@@ -32,6 +34,8 @@ describe('Bower feature', function() {
     });
 
     it('create expected files', function() {
+      assert.noFile(['bower.json']);
+
       assert.noFileContent([
         ['package.json', 'wiredep'],
         ['gulpfile.js', 'gulp.task(\'wiredep\''],
