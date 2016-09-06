@@ -6,8 +6,6 @@ const sorting = require('postcss-sorting');
 const mqpacker = require('css-mqpacker');
 const stylefmt = require('stylefmt');
 const del = require('del');
-const ghpages = require('gh-pages');
-const path = require('path');
 const runSequence = require('run-sequence');
 <% if (useBower) { %>
 const wiredep = require('wiredep').stream;
@@ -118,7 +116,8 @@ gulp.task('clean:build', () => {
 });
 
 gulp.task('ghpages', () => {
-  return ghpages.publish(path.join(__dirname, 'dist'));
+  return gulp.src('dist/**/*')
+    .pipe(gulp.dest('docs'));
 });
 
 gulp.task('watch', () => {
@@ -128,15 +127,15 @@ gulp.task('watch', () => {
   gulp.watch('src/images/*', ['image']);
 });
 
-gulp.task('default', () => {
-  runSequence(['pug', 'sass', 'js', 'image'], 'browserSync', 'watch');
+gulp.task('default', (cb) => {
+  runSequence(['pug', 'sass', 'js', 'image'], 'browserSync', 'watch', cb);
 });
 
 gulp.task('build', () => {
-  runSequence('clean:all', ['html', 'image'], 'clean:build');
+  runSequence('clean:all', ['html', 'image'], 'clean:build', cb);
 });
 
-gulp.task('publish', () => {
-  runSequence('build', 'ghpages');
+gulp.task('publish', (cb) => {
+  runSequence('build', 'ghpages', cb);
 });
 
