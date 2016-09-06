@@ -39,6 +39,9 @@ gulp.task('html', ['pug', 'sass', 'js'], () => {
   return gulp.src('dist/index.html')
     .pipe($.useref())
     .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
+    .pipe($.if('*.css', $.uncss({
+      html: ['dist/*.html']
+    })))
     .pipe($.if('*.css', $.cleanCss()))
     .pipe($.if('*.js', $.uglify()))
     .pipe(gulp.dest('dist'));
