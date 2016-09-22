@@ -131,7 +131,7 @@ gulp.task('default', (cb) => {
   runSequence(['pug', 'sass', 'js', 'image'], 'browserSync', 'watch', cb);
 });
 
-gulp.task('build', () => {
+gulp.task('build', (cb) => {
   runSequence('clean:all', ['html', 'image'], 'clean:build', cb);
 });
 
