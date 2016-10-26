@@ -34,7 +34,7 @@ gulp.task('wiredep', () => {
 });
 <% } %>
 gulp.task('html', ['pug', 'sass', 'js'], () => {
-  return gulp.src('dist/index.html')
+  return gulp.src('dist/*.html')
     .pipe($.useref())
     .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
     .pipe($.if('*.css', $.uncss({
