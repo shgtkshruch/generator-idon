@@ -123,7 +123,7 @@ gulp.task('ghpages', () => {
 
 gulp.task('watch', () => {
   gulp.watch('src/**/*.pug', ['pug']);
-  gulp.watch('src/styles/*.scss', ['sass']);
+  gulp.watch('src/styles/**/*.scss', ['sass']);
   gulp.watch('src/scripts/*.js', ['js']);
   gulp.watch('src/images/**/*', ['image']);
 });
