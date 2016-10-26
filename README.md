@@ -22,9 +22,10 @@ If you want to use JavaScript and CSS libraries, the following require.
 - CSS Autoprefixing with [autoprefixer](https://github.com/postcss/autoprefixer)
 - Sorts CSS properties fast and automatically with [postcss-sorting](https://github.com/hudochenkov/postcss-sorting)
 - Automatically formats CSS with [stylefmt](https://github.com/morishitter/stylefmt)
+- Enable ES2015 features using [Babel](https://babeljs.io/)
 - Automagically wire up your Bower components with [wiredep](https://github.com/taptapship/wiredep)
 - Awesome image optimization
-- Easy publish to Github Pages
+- Easy publish to GitHub Pages
 
 ## Getting Start
 
@@ -46,9 +47,17 @@ Run `gulp` and start your coding!
 ### Third-Party Dependencies
 To install dependencies, run `bower install --[save|save-dev] package-name` to get the files, then run `gulp wiredep` to add dependencies to your source code.
 
-## Github Pages
+## Build
 
-If you want to use Github Pages, you can use it with one command.
+After the coding is completed, please hit this command.
+
+    gulp build
+
+Then, you can finished product in the `dist` folder.
+
+## GitHub Pages
+
+If you want to use GitHub Pages, you can use it with one command.
 With coding, the page is complete, please hit the following command.
 
     gulp publish
