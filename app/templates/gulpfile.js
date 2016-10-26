@@ -96,6 +96,7 @@ gulp.task('js', () => {
 
 gulp.task('image', () => {
   return gulp.src('src/images/*')
+    .pipe($.changed('dist/images'))
     .pipe($.imagemin({
       progressive: true,
       interlaced: true
