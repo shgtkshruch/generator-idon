@@ -95,7 +95,7 @@ gulp.task('js', () => {
 });
 
 gulp.task('image', () => {
-  return gulp.src('src/images/*')
+  return gulp.src('src/images/**/*')
     .pipe($.changed('dist/images'))
     .pipe($.imagemin({
       progressive: true,
@@ -125,7 +125,7 @@ gulp.task('watch', () => {
   gulp.watch('src/**/*.pug', ['pug']);
   gulp.watch('src/styles/*.scss', ['sass']);
   gulp.watch('src/scripts/*.js', ['js']);
-  gulp.watch('src/images/*', ['image']);
+  gulp.watch('src/images/**/*', ['image']);
 });
 
 gulp.task('default', (cb) => {
