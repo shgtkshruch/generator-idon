@@ -84,7 +84,7 @@ gulp.task('sass', () => {
 gulp.task('js', () => {
   return gulp.src('src/scripts/*.js')
     .pipe($.plumber())
-    .pipe($.changed('dist', {
+    .pipe($.changed('dist/scripts', {
       extension: '.js'
     }))
     .pipe($.babel({
