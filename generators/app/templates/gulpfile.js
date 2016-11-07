@@ -18,6 +18,7 @@ gulp.task('browserSync', () => {
   bs.init({
     server: {
       baseDir: 'dist',
+      index: 'top.html',
       routes: {
         '/bower_components': 'bower_components'
       }
