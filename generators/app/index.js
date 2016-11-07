@@ -35,8 +35,8 @@ module.exports = generators.Base.extend({
 
     app() {
       this.template(
-        'index.pug',
-        'src/index.pug',
+        'top.pug',
+        'src/top.pug',
         {
           name: _s.slugify(this.appname),
         }
@@ -52,6 +52,10 @@ module.exports = generators.Base.extend({
 
       this.copy('main.scss', 'src/styles/main.scss');
       this.copy('main.js', 'src/scripts/main.js');
+
+      mkdirp('src/partials/top');
+      mkdirp('src/styles/top');
+      mkdirp('src/images/top');
 
       mkdirp('src/partials/common');
       mkdirp('src/styles/common');

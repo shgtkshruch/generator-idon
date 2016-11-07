@@ -18,14 +18,14 @@ describe('general', () => {
       '.eslintrc',
       'package.json',
       'gulpfile.js',
-      'src/index.pug',
+      'src/top.pug',
       'src/styles/main.scss',
       'src/scripts/main.js'
     ]);
 
     assert.fileContent([
       ['package.json', '"name": "tmp"'],
-      ['src/index.pug', 'title tmp']
+      ['src/top.pug', 'title tmp']
     ]);
   });
 });
