@@ -39,9 +39,17 @@ module.exports = generators.Base.extend({
         'src/index.pug',
         {
           name: _s.slugify(this.appname),
+        }
+      );
+
+      this.template(
+        'layout.pug',
+        'src/partials/layout.pug',
+        {
           useBower: this.useBower
         }
       );
+
       this.copy('main.scss', 'src/styles/main.scss');
       this.copy('main.js', 'src/scripts/main.js');
       mkdirp('src/images');

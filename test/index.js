@@ -4,7 +4,7 @@ var path = require('path');
 
 describe('general', function() {
   before(function() {
-    return helpers.run(path.join(__dirname, '../app'))
+    return helpers.run(path.join(__dirname, '../generators/app'))
       .inDir(path.join(__dirname, '.tmp'))
       .withOptions({'skip-install': true})
       .withPrompts({useBower: false})
