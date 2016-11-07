@@ -1,6 +1,6 @@
-var generators = require('yeoman-generator');
-var _s = require('underscore.string');
-var mkdirp = require('mkdirp');
+const generators = require('yeoman-generator');
+const _s = require('underscore.string');
+const mkdirp = require('mkdirp');
 
 module.exports = generators.Base.extend({
   constructor: function() {
@@ -9,31 +9,31 @@ module.exports = generators.Base.extend({
     this.options['npm-install'] = true;
   },
 
-  prompting: function () {
+  prompting() {
     return this.prompt([{
       type: 'confirm',
       name: 'useBower',
       message: 'Would you like to use Bower as package manager?',
       default: false
-    }]).then(function (answers) {
+    }]).then(answers => {
       this.useBower = answers.useBower;
-    }.bind(this));
+    });
   },
 
   writing: {
-    git: function() {
+    git() {
       this.copy('gitignore', '.gitignore');
     },
 
-    babel: function () {
+    babel() {
       this.copy('babelrc', '.babelrc');
     },
 
-    eslint: function () {
+    eslint() {
       this.copy('eslintrc', '.eslintrc');
     },
 
-    app: function() {
+    app() {
       this.template(
         'index.pug',
         'src/index.pug',
@@ -56,7 +56,7 @@ module.exports = generators.Base.extend({
       mkdirp('src/partials');
     },
 
-    gulp: function() {
+    gulp() {
       this.template(
         'package.json',
         'package.json',
@@ -75,9 +75,9 @@ module.exports = generators.Base.extend({
     }
   },
 
-  bower: function () {
+  bower() {
     if (this.useBower) {
-      var bowerJson = {
+      const bowerJson = {
         name: _s.slugify(this.appname),
         dependencies: {}
       };
@@ -85,7 +85,7 @@ module.exports = generators.Base.extend({
     }
   },
 
-  install: function() {
+  install() {
     if (!this.options['skip-install']) {
       this.installDependencies({
         npm: this.options['npm-install'],

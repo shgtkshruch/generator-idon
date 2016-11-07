@@ -1,10 +1,10 @@
-var helpers = require('yeoman-test');
-var assert = require('yeoman-assert');
-var path = require('path');
+const helpers = require('yeoman-test');
+const assert = require('yeoman-assert');
+const path = require('path');
 
-describe('Bower feature', function() {
-  describe('on', function () {
-    before(function() {
+describe('Bower feature', () => {
+  describe('on', () => {
+    before(() => {
       return helpers.run(path.join(__dirname, '../generators/app'))
         .inDir(path.join(__dirname, '.tmp'))
         .withOptions({'skip-install': true})
@@ -12,7 +12,7 @@ describe('Bower feature', function() {
         .toPromise();
     });
 
-    it('create expected files', function() {
+    it('create expected files', () => {
       assert.file(['bower.json']);
 
       assert.fileContent([
@@ -25,8 +25,8 @@ describe('Bower feature', function() {
     });
   });
 
-  describe('off', function () {
-    before(function() {
+  describe('off', () => {
+    before(() => {
       return helpers.run(path.join(__dirname, '../generators/app'))
         .inDir(path.join(__dirname, '.tmp'))
         .withOptions({'skip-install': true})
@@ -34,7 +34,7 @@ describe('Bower feature', function() {
         .toPromise();
     });
 
-    it('create expected files', function() {
+    it('create expected files', () => {
       assert.noFile(['bower.json']);
 
       assert.noFileContent([

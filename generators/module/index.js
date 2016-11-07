@@ -6,7 +6,7 @@ module.exports = generators.Base.extend({
     generators.Base.apply(this, arguments);
   },
 
-  prompting: function () {
+  prompting() {
 
     const files = fs.readdirSync('src').filter((file) => {
       return file.indexOf('.pug') > -1;
@@ -24,14 +24,14 @@ module.exports = generators.Base.extend({
       type: 'input',
       name: 'moduleName',
       message: 'What is the name of the module you make?',
-    }]).then(function (answers) {
+    }]).then(answers  => {
       this.pageName = answers.pageName;
       this.moduleName = answers.moduleName;
-    }.bind(this));
+    });
   },
 
   writing: {
-    pug: function () {
+    pug() {
       this.copy(
         'index.pug',
         `src/partials/${this.pageName}/${this.moduleName}.pug`
@@ -50,7 +50,7 @@ module.exports = generators.Base.extend({
       );
     },
 
-    sass: function() {
+    sass() {
       this.template(
         'style.scss',
         `src/styles/${this.pageName}/${this.moduleName}.scss`,

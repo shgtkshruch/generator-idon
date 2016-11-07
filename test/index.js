@@ -1,9 +1,9 @@
-var helpers = require('yeoman-test');
-var assert = require('yeoman-assert');
-var path = require('path');
+const helpers = require('yeoman-test');
+const assert = require('yeoman-assert');
+const path = require('path');
 
-describe('general', function() {
-  before(function() {
+describe('general', () => {
+  before(() => {
     return helpers.run(path.join(__dirname, '../generators/app'))
       .inDir(path.join(__dirname, '.tmp'))
       .withOptions({'skip-install': true})
@@ -11,7 +11,7 @@ describe('general', function() {
       .toPromise();
   });
 
-  it('create expected files', function() {
+  it('create expected files', () => {
     assert.file([
       '.gitignore',
       '.babelrc',
