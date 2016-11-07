@@ -8,17 +8,19 @@ module.exports = generators.Base.extend({
 
   prompting() {
 
-    const files = fs.readdirSync('src').filter((file) => {
+    const pages = fs.readdirSync('src').filter((file) => {
       return file.indexOf('.pug') > -1;
     }).map((pugFile) => {
       return pugFile.replace(/\.pug/, '');
     });
 
+    pages.unshift('common');
+
     return this.prompt([{
       type: 'list',
       name: 'pageName',
       message: 'Do you want to create a module of which page?',
-      choices: files
+      choices: pages
     },
     {
       type: 'input',
@@ -37,17 +39,20 @@ module.exports = generators.Base.extend({
         `src/partials/${this.pageName}/${this.moduleName}.pug`
       );
 
-      // add include statement to pug file
-      const file = fs.readFileSync(`src/${this.pageName}.pug`, 'utf-8');
-      const search = 'block body';
-      const index = file.indexOf(search);
-      const start = file.substr(0, index + search.length);
-      const end = file.substr(index + search.length);
+      if (this.pageName !== 'common') {
+        // add include statement to pug file
+        const file = fs.readFileSync(`src/${this.pageName}.pug`, 'utf-8');
+        const search = 'block body';
+        const index = file.indexOf(search);
+        const start = file.substr(0, index + search.length);
+        const end = file.substr(index + search.length);
 
-      fs.writeFileSync(
-        `src/${this.pageName}.pug`,
-        start + `\n  include partials/${this.pageName}/${this.moduleName}` + end
-      );
+        fs.writeFileSync(
+          `src/${this.pageName}.pug`,
+          start + `\n  include partials/${this.pageName}/${this.moduleName}` + end
+        );
+      }
+
     },
 
     sass() {
@@ -70,7 +75,6 @@ module.exports = generators.Base.extend({
         'src/styles/main.scss',
         start + `@import '${this.pageName}/${this.moduleName}';\n` + end
       );
-
     }
   },
 });

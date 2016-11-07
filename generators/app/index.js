@@ -52,8 +52,10 @@ module.exports = generators.Base.extend({
 
       this.copy('main.scss', 'src/styles/main.scss');
       this.copy('main.js', 'src/scripts/main.js');
-      mkdirp('src/images');
-      mkdirp('src/partials');
+
+      mkdirp('src/partials/common');
+      mkdirp('src/styles/common');
+      mkdirp('src/images/common');
     },
 
     gulp() {
