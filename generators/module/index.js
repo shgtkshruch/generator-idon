@@ -19,12 +19,11 @@ module.exports = generators.Base.extend({
       name: 'pageName',
       message: 'Do you want to create a module of which page?',
       choices: pages
-    },
-    {
+    }, {
       type: 'input',
       name: 'moduleName',
       message: 'What is the name of the module you make?',
-    }]).then(answers  => {
+    }]).then(answers => {
       this.pageName = answers.pageName;
       this.moduleName = answers.moduleName;
     });
