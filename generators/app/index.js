@@ -55,7 +55,6 @@ module.exports = generators.Base.extend({
       this.copy('_base.scss', 'src/styles/_base.scss');
       this.copy('_layout.scss', 'src/styles/_layout.scss');
       this.copy('_utility.scss', 'src/styles/_utility.scss');
-      this.copy('main.js', 'src/scripts/main.js');
 
       mkdirp('src/partials/top');
       mkdirp('src/styles/top');

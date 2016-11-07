@@ -24,7 +24,6 @@ describe('general', () => {
       'src/styles/_base.scss',
       'src/styles/_layout.scss',
       'src/styles/_utility.scss',
-      'src/scripts/main.js'
     ]);
 
     assert.fileContent([
