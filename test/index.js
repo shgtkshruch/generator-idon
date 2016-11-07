@@ -20,6 +20,10 @@ describe('general', () => {
       'gulpfile.js',
       'src/top.pug',
       'src/styles/main.scss',
+      'src/styles/_variables.scss',
+      'src/styles/_base.scss',
+      'src/styles/_layout.scss',
+      'src/styles/_utility.scss',
       'src/scripts/main.js'
     ]);
 
