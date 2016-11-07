@@ -11,7 +11,7 @@ module.exports = generators.Base.extend({
     return this.prompt([{
       type: 'input',
       name: 'pageName',
-      message: 'What name your page?',
+      message: 'What is the name of the page you make?',
     }]).then(function (answers) {
       this.pageName = answers.pageName;
     }.bind(this));
@@ -37,13 +37,17 @@ module.exports = generators.Base.extend({
     sass: function () {
       var file = fs.readFileSync('src/styles/main.scss', 'utf-8');
       var search = '// modules';
-      var index = file.indexOf(search);
-      var start = file.substr(0, index + search.length);
-      var end = file.substr(index + search.length);
+      var index = file.lastIndexOf(search);
+      var start = file.substr(0, index);
+      var end = file.substr(index);
+
+      // remove extra line breaks
+      var text = start + `\n\n// ${this.pageName}\n// ${this.pageName}\n\n` + end;
+      text = text.replace(/\n{3,}/g, '\n\n');
 
       fs.writeFileSync(
         'src/styles/main.scss',
-        start + `\n\n// ${this.pageName}` + end
+        text
       );
     }
   },
