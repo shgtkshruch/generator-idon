@@ -9,6 +9,7 @@ module.exports = generators.Base.extend({
   prompting() {
 
     const pages = fs.readdirSync('src')
+      .filter(file => file.indexOf('layout') === -1)
       .filter(file => file.indexOf('.pug') > -1)
       .map(pugFile => pugFile.replace(/\.pug/, ''));
 
