@@ -19,8 +19,8 @@ describe('Bower feature', () => {
         ['package.json', 'wiredep'],
         ['gulpfile.js', 'gulp.task(\'wiredep\''],
         ['src/top.pug', 'tmp'],
-        ['src/partials/layout.pug', 'bower:css'],
-        ['src/partials/layout.pug', 'bower:js']
+        ['src/layout.pug', 'bower:css'],
+        ['src/layout.pug', 'bower:js']
       ]);
     });
   });
@@ -40,8 +40,8 @@ describe('Bower feature', () => {
       assert.noFileContent([
         ['package.json', 'wiredep'],
         ['gulpfile.js', 'gulp.task(\'wiredep\''],
-        ['src/partials/layout.pug', 'bower:css'],
-        ['src/partials/layout.pug', 'bower:js']
+        ['src/layout.pug', 'bower:css'],
+        ['src/layout.pug', 'bower:js']
       ]);
     });
   });

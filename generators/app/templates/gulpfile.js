@@ -29,9 +29,9 @@ gulp.task('browserSync', () => {
 });
 <% if (useBower) { %>
 gulp.task('wiredep', () => {
-  return gulp.src('src/partials/layout.pug')
+  return gulp.src('src/layout.pug')
     .pipe(wiredep())
-    .pipe(gulp.dest('src/partials'));
+    .pipe(gulp.dest('src'));
 });
 <% } %>
 gulp.task('html', ['pug', 'sass', 'js'], () => {

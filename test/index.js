@@ -19,6 +19,7 @@ describe('general', () => {
       'package.json',
       'gulpfile.js',
       'src/top.pug',
+      'src/layout.pug',
       'src/styles/main.scss',
       'src/styles/_variables.scss',
       'src/styles/_base.scss',

@@ -44,7 +44,7 @@ module.exports = generators.Base.extend({
 
       this.template(
         'layout.pug',
-        'src/partials/layout.pug',
+        'src/layout.pug',
         {
           useBower: this.useBower
         }
