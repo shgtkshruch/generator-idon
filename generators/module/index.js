@@ -55,7 +55,7 @@ module.exports = generators.Base.extend({
     sass() {
       this.template(
         'style.scss',
-        `src/styles/${this.pageName}/${this.moduleName}.scss`,
+        `src/styles/${this.pageName}/_${this.moduleName}.scss`,
         {
           moduleName: this.moduleName
         }
