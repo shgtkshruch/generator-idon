@@ -25,14 +25,14 @@ module.exports = generators.Base.extend({
     },
 
     pug() {
-      const file = fs.readFileSync('src/partials/layout.pug', 'utf-8');
+      const file = fs.readFileSync('src/layout.pug', 'utf-8');
       const search = '// endbuild';
       const index = file.lastIndexOf(search);
       const start = file.substr(0, index);
       const end = file.substr(index);
 
       fs.writeFileSync(
-        'src/partials/layout.pug',
+        'src/layout.pug',
         start + `script(src='scripts/${this.scriptName}.js')\n    ` + end
       );
     }
