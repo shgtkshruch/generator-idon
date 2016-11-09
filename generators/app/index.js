@@ -38,7 +38,7 @@ module.exports = generators.Base.extend({
         'top.pug',
         'src/top.pug',
         {
-          name: _s.slugify(this.appname),
+          title: _s.slugify(this.appname),
         }
       );
 
