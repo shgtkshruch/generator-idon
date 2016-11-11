@@ -21,6 +21,16 @@ module.exports = generators.Base.extend({
   },
 
   writing: {
+    readme() {
+      this.template(
+        'README.md',
+        'README.md',
+        {
+          title: _s.slugify(this.appname)
+        }
+      )
+    },
+
     git() {
       this.copy('gitignore', '.gitignore');
     },

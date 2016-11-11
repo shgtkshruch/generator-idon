@@ -16,6 +16,7 @@ describe('general', () => {
       '.gitignore',
       '.babelrc',
       '.eslintrc',
+      'README.md',
       'package.json',
       'gulpfile.js',
       'src/top.pug',
@@ -28,6 +29,7 @@ describe('general', () => {
     ]);
 
     assert.fileContent([
+      ['README.md', '# tmp'],
       ['package.json', '"name": "tmp"'],
       ['src/top.pug', 'title tmp']
     ]);
