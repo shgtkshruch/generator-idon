@@ -111,6 +111,7 @@ gulp.task('clean:all', () => {
 
 gulp.task('clean:build', () => {
   return del([
+    'dist/layout.html',
     'dist/partials',
     'dist/{styles,scripts}/*',
     '!dist/{styles,scripts}/{main,vendor}.*',
