@@ -18,7 +18,7 @@ describe('Bower feature', () => {
       assert.fileContent([
         ['package.json', 'wiredep'],
         ['gulpfile.js', 'gulp.task(\'wiredep\''],
-        ['src/top.pug', 'tmp'],
+        ['src/index.pug', 'tmp'],
         ['src/layout.pug', 'bower:css'],
         ['src/layout.pug', 'bower:js']
       ]);

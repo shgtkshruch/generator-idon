@@ -19,7 +19,7 @@ describe('general', () => {
       'README.md',
       'package.json',
       'gulpfile.js',
-      'src/top.pug',
+      'src/index.pug',
       'src/layout.pug',
       'src/styles/main.scss',
       'src/styles/_variables.scss',
@@ -31,7 +31,7 @@ describe('general', () => {
     assert.fileContent([
       ['README.md', '# tmp'],
       ['package.json', '"name": "tmp"'],
-      ['src/top.pug', 'title tmp']
+      ['src/index.pug', 'title tmp']
     ]);
   });
 });
