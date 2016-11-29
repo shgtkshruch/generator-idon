@@ -28,8 +28,8 @@
     "gulp-useref": "^3.1.0",
     "postcss-sorting": "1.6.0",
     "run-sequence": "^1.2.2",
-    "stylefmt": "^4.1.1"<% if (useBower) { %>,
-    "wiredep": "git@github.com:taptapship/wiredep.git#0c247f93656147789c6aba5d8fb8decd45ea449c"<% } %>
+    "stylefmt": "^4.1.1",
+    "wiredep": "git@github.com:taptapship/wiredep.git#0c247f93656147789c6aba5d8fb8decd45ea449c"
   }
 }
 

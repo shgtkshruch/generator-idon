@@ -7,9 +7,7 @@ const mqpacker = require('css-mqpacker');
 const stylefmt = require('stylefmt');
 const del = require('del');
 const runSequence = require('run-sequence');
-<% if (useBower) { %>
 const wiredep = require('wiredep').stream;
-<% } %>
 
 const $ = gulpLoadPlugins();
 const bs = browserSync.create();
@@ -26,13 +24,13 @@ gulp.task('browserSync', () => {
     browser: 'Google Chrome Canary'
   });
 });
-<% if (useBower) { %>
+
 gulp.task('wiredep', () => {
   return gulp.src('src/layout.pug')
     .pipe(wiredep())
     .pipe(gulp.dest('src'));
 });
-<% } %>
+
 gulp.task('html', ['pug', 'sass', 'js'], () => {
   return gulp.src('dist/*.html')
     .pipe($.useref())

@@ -5,18 +5,20 @@ const mkdirp = require('mkdirp');
 module.exports = generators.Base.extend({
   constructor: function() {
     generators.Base.apply(this, arguments);
-
-    this.options['npm-install'] = true;
   },
 
   prompting() {
     return this.prompt([{
-      type: 'confirm',
-      name: 'useBower',
-      message: 'Would you like to use Bower as package manager?',
-      default: false
+      type: 'list',
+      name: 'resetCSS',
+      message: 'Which reset CSS do you use?',
+      choices: [
+        'reset-css',
+        'normalize-css',
+        'sanitize-css',
+      ]
     }]).then(answers => {
-      this.useBower = answers.useBower;
+      this.resetCSS = answers.resetCSS;
     });
   },
 
@@ -95,21 +97,24 @@ module.exports = generators.Base.extend({
   },
 
   bower() {
-    if (this.useBower) {
-      const bowerJson = {
-        name: _s.slugify(this.appname),
-        dependencies: {}
-      };
-      this.fs.writeJSON('bower.json', bowerJson);
-    }
+    const bowerJson = {
+      name: _s.slugify(this.appname),
+      dependencies: {
+        [this.resetCSS]: '*'
+      }
+    };
+    this.fs.writeJSON('bower.json', bowerJson);
   },
 
   install() {
     if (!this.options['skip-install']) {
-      this.installDependencies({
-        npm: this.options['npm-install'],
-        bower: false
-      });
+      this.installDependencies();
+    }
+  },
+
+  end() {
+    if (!this.options.test) {
+      this.spawnCommand('gulp', ['wiredep']);
     }
   }
 });

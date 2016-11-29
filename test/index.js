@@ -6,8 +6,11 @@ describe('general', () => {
   before(() => {
     return helpers.run(path.join(__dirname, '../generators/app'))
       .inDir(path.join(__dirname, '.tmp'))
-      .withOptions({'skip-install': true})
-      .withPrompts({useBower: false})
+      .withOptions({
+        'skip-install': true,
+        test: true
+      })
+      .withPrompts({resetCSS: 'normalize.css'})
       .toPromise();
   });
 
@@ -17,6 +20,7 @@ describe('general', () => {
       '.babelrc',
       '.eslintrc',
       'README.md',
+      'bower.json',
       'package.json',
       'gulpfile.js',
       'src/index.pug',

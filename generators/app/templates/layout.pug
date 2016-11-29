@@ -9,18 +9,18 @@ html(lang="ja")
     meta(name='keywords', content='keywords')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     meta(name='format-detection', content='telephone=no')
-    <% if (useBower) { %>// build:css styles/vendor.css
+    build:css styles/vendor.css
     // bower:css
     // endbower
-    // endbuild<% } %>
+    // endbuild
     // build:css styles/main.css
     link(rel='stylesheet', href='styles/main.css', media='all')
     // endbuild
   body
     block body
-    <% if (useBower) { %>// build:js scripts/vendor.js
+    // build:js scripts/vendor.js
     // bower:js
     // endbower
-    // endbuild<% } %>
+    // endbuild
     // build:js scripts/main.js
     // endbuild

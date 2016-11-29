@@ -2,46 +2,60 @@ const helpers = require('yeoman-test');
 const assert = require('yeoman-assert');
 const path = require('path');
 
-describe('Bower feature', () => {
-  describe('on', () => {
+describe('reset css', () => {
+  describe('reset-css', () => {
     before(() => {
       return helpers.run(path.join(__dirname, '../generators/app'))
         .inDir(path.join(__dirname, '.tmp'))
-        .withOptions({'skip-install': true})
-        .withPrompts({useBower: true})
+        .withOptions({
+          'skip-install': true,
+          test: true
+        })
+        .withPrompts({resetCSS: 'reset-css'})
         .toPromise();
     });
 
     it('create expected files', () => {
-      assert.file(['bower.json']);
-
       assert.fileContent([
-        ['package.json', 'wiredep'],
-        ['gulpfile.js', 'gulp.task(\'wiredep\''],
-        ['src/index.pug', 'tmp'],
-        ['src/layout.pug', 'bower:css'],
-        ['src/layout.pug', 'bower:js']
+        ['bower.json', 'reset-css']
       ]);
     });
   });
 
-  describe('off', () => {
+  describe('normalize-css', () => {
     before(() => {
       return helpers.run(path.join(__dirname, '../generators/app'))
         .inDir(path.join(__dirname, '.tmp'))
-        .withOptions({'skip-install': true})
-        .withPrompts({useBower: false})
+        .withOptions({
+          'skip-install': true,
+          test: true
+        })
+        .withPrompts({resetCSS: 'normalize-css'})
         .toPromise();
     });
 
     it('create expected files', () => {
-      assert.noFile(['bower.json']);
+      assert.fileContent([
+        ['bower.json', 'normalize-css']
+      ]);
+    });
+  });
 
-      assert.noFileContent([
-        ['package.json', 'wiredep'],
-        ['gulpfile.js', 'gulp.task(\'wiredep\''],
-        ['src/layout.pug', 'bower:css'],
-        ['src/layout.pug', 'bower:js']
+  describe('sanitiz-css', () => {
+    before(() => {
+      return helpers.run(path.join(__dirname, '../generators/app'))
+        .inDir(path.join(__dirname, '.tmp'))
+        .withOptions({
+          'skip-install': true,
+          test: true
+        })
+        .withPrompts({resetCSS: 'sanitize-css'})
+        .toPromise();
+    });
+
+    it('create expected files', () => {
+      assert.fileContent([
+        ['bower.json', 'sanitize-css']
       ]);
     });
   });
