@@ -23,6 +23,7 @@ If you want to use JavaScript and CSS libraries, the following require.
 - Sorts CSS properties fast and automatically with [postcss-sorting](https://github.com/hudochenkov/postcss-sorting)
 - Automatically formats CSS with [stylefmt](https://github.com/morishitter/stylefmt)
 - Enable ES2015 features using [Babel](https://babeljs.io/)
+- Eslint with [eslint-config-airbnb](https://github.com/airbnb/javascript)
 - Automagically wire up your Bower components with [wiredep](https://github.com/taptapship/wiredep)
 - Awesome image optimization
 - Easy publish to GitHub Pages
