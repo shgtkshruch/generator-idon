@@ -36,7 +36,8 @@ gulp.task('html', ['pug', 'sass', 'js'], () => {
     .pipe($.useref())
     .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
     .pipe($.if('*.css', $.uncss({
-      html: ['dist/*.html']
+      html: ['dist/*.html'],
+      ignore: ['is-active']
     })))
     .pipe($.if('*.css', $.cleanCss()))
     .pipe($.if('*.js', $.uglify()))
