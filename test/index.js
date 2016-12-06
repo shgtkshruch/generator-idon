@@ -19,6 +19,7 @@ describe('general', () => {
       '.gitignore',
       '.babelrc',
       '.eslintrc',
+      '.editorconfig',
       'README.md',
       'bower.json',
       'package.json',

@@ -33,6 +33,10 @@ module.exports = generators.Base.extend({
       )
     },
 
+    editorconfig() {
+      this.copy('editorconfig', '.editorconfig');
+    },
+
     git() {
       this.copy('gitignore', '.gitignore');
     },
