@@ -86,6 +86,10 @@ gulp.task('js', () => {
     .pipe($.changed('dist/scripts', {
       extension: '.js'
     }))
+    .pipe($.eslint({
+      useEslintrc: true
+    }))
+    .pipe($.eslint.format())
     .pipe($.babel({
       presets: ['es2015']
     }))
