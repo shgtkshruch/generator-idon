@@ -74,8 +74,8 @@ gulp.task('sass', () => {
       autoprefixer({browers: ['last 2 version', 'ie9', 'ie8']}),
       sorting({'sort-order': 'yandex'}),
       mqpacker,
-      stylefmt
     ]))
+    .pipe($.stylefmt())
     .pipe(gulp.dest('dist/styles'))
     .pipe(bs.stream());
 });
