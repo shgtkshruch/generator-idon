@@ -10,6 +10,7 @@ Yeoman generator for starting sketch HTML, CSS, and JavaScript
 
 - [Yeoman](http://yeoman.io/)
 - [gulp](http://gulpjs.com/)
+- [Yarn](https://yarnpkg.com/en/)
 
 If you want to use JavaScript and CSS libraries, the following require.
 
