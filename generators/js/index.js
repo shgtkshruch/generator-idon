@@ -1,5 +1,8 @@
+'use strict';
+
 const Generator = require('yeoman-generator');
 const fs = require('fs');
+const mkdirp = require('mkdirp');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -32,19 +35,8 @@ module.exports = class extends Generator {
 
   writing() {
     this.fs.copy(
-      this.templatePath('script.js'),
+      this.templatePath('index.js'),
       this.destinationPath(`src/scripts/${this.pageName}/${this.scriptName}.js`)
-    );
-
-    const file = fs.readFileSync('src/layout.pug', 'utf-8');
-    const search = '// endbuild';
-    const index = file.lastIndexOf(search);
-    const start = file.substr(0, index);
-    const end = file.substr(index);
-
-    fs.writeFileSync(
-      'src/layout.pug',
-      start + `script(src='scripts/${this.pageName}/${this.scriptName}.js')\n    ` + end
     );
   }
 };

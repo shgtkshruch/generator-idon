@@ -1,3 +1,5 @@
+'use strict';
+
 const helpers = require('yeoman-test');
 const assert = require('yeoman-assert');
 const path = require('path');
@@ -31,6 +33,7 @@ describe('general', () => {
       'src/styles/_base.scss',
       'src/styles/_layout.scss',
       'src/styles/_utility.scss',
+      'src/scripts/app.js',
     ]);
 
     assert.fileContent([

@@ -1,3 +1,5 @@
+'use strict';
+
 const Generator = require('yeoman-generator');
 const _s = require('underscore.string');
 const mkdirp = require('mkdirp');
@@ -95,6 +97,11 @@ module.exports = class extends Generator {
     this.fs.copy(
       this.templatePath('_utility.scss'),
       this.destinationPath('src/styles/_utility.scss')
+    );
+
+    this.fs.copy(
+      this.templatePath('app.js'),
+      this.destinationPath('src/scripts/app.js')
     );
 
     // directories

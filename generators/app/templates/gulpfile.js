@@ -1,10 +1,15 @@
 const gulp = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require ('browser-sync');
+
 const autoprefixer = require('autoprefixer');
 const sorting = require('postcss-sorting');
 const mqpacker = require('css-mqpacker');
 const stylefmt = require('stylefmt');
+
+const babel = require('rollup-plugin-babel');
+const eslint = require('rollup-plugin-eslint');
+
 const del = require('del');
 const runSequence = require('run-sequence');
 const wiredep = require('wiredep').stream;
@@ -81,18 +86,23 @@ gulp.task('sass', () => {
 });
 
 gulp.task('js', () => {
-  return gulp.src('src/scripts/**/*.js')
+  gulp.src('./src/scripts/app.js')
     .pipe($.plumber())
-    .pipe($.changed('dist/scripts', {
-      extension: '.js'
+    .pipe($.sourcemaps.init())
+    .pipe($.rollup({
+      allowRealFiles: true,
+      entry: './src/scripts/app.js',
+      format: 'iife',
+      plugins: [
+        eslint({
+          useEslintrc: true
+        }),
+        babel({
+          exclude: 'node_modules/**/*'
+        }),
+      ]
     }))
-    .pipe($.eslint({
-      useEslintrc: true
-    }))
-    .pipe($.eslint.format())
-    .pipe($.babel({
-      presets: ['es2015']
-    }))
+    .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('dist/scripts'))
     .pipe(bs.stream());
 });
