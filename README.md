@@ -25,6 +25,7 @@ If you want to use JavaScript and CSS libraries, the following require.
 - Automatically formats CSS with [stylefmt](https://github.com/morishitter/stylefmt)
 - Enable ES2015 features using [Babel](https://babeljs.io/)
 - Eslint with [eslint-config-airbnb](https://github.com/airbnb/javascript)
+- Efficiently bundle JavaScript files up into a single file with [rollup](http://rollupjs.org/)
 - Automagically wire up your Bower components with [wiredep](https://github.com/taptapship/wiredep)
 - Awesome image optimization
 - Easy publish to GitHub Pages
