@@ -1,10 +1,10 @@
-const generators = require('yeoman-generator');
+const Generator = require('yeoman-generator');
 const fs = require('fs');
 
-module.exports = generators.Base.extend({
-  constructor: function() {
-    generators.Base.apply(this, arguments);
-  },
+module.exports = class extends Generator {
+  constructor(args, opts) {
+    super(args, opts);
+  }
 
   prompting() {
 
@@ -28,52 +28,47 @@ module.exports = generators.Base.extend({
       this.pageName = answers.pageName;
       this.moduleName = answers.moduleName;
     });
-  },
+  }
 
-  writing: {
-    pug() {
-      this.copy(
-        'index.pug',
-        `src/partials/${this.pageName}/${this.moduleName}.pug`
-      );
+  writing() {
+    this.fs.copy(
+      this.templatePath('index.pug'),
+      this.destinationPath(`src/partials/${this.pageName}/${this.moduleName}.pug`)
+    );
 
-      if (this.pageName !== 'common') {
-        // add include statement to pug file
-        const file = fs.readFileSync(`src/${this.pageName}.pug`, 'utf-8');
-        const search = 'block body';
-        const index = file.indexOf(search);
-        const start = file.substr(0, index + search.length);
-        const end = file.substr(index + search.length);
-
-        fs.writeFileSync(
-          `src/${this.pageName}.pug`,
-          start + `\n  include partials/${this.pageName}/${this.moduleName}` + end
-        );
-      }
-
-    },
-
-    sass() {
-      this.template(
-        'style.scss',
-        `src/styles/${this.pageName}/_${this.moduleName}.scss`,
-        {
-          moduleName: this.moduleName
-        }
-      );
-
-      // add import statement to main.scss
-      const file = fs.readFileSync('src/styles/main.scss', 'utf-8');
-      const search = `// ${this.pageName}`;
-      const index = file.lastIndexOf(search);
-      const start = file.substr(0, index);
-      const end = file.substr(index);
+    if (this.pageName !== 'common') {
+      // add include statement to pug file
+      const file = fs.readFileSync(`src/${this.pageName}.pug`, 'utf-8');
+      const search = 'block body';
+      const index = file.indexOf(search);
+      const start = file.substr(0, index + search.length);
+      const end = file.substr(index + search.length);
 
       fs.writeFileSync(
-        'src/styles/main.scss',
-        start + `@import '${this.pageName}/${this.moduleName}';\n` + end
+        `src/${this.pageName}.pug`,
+        start + `\n  include partials/${this.pageName}/${this.moduleName}` + end
       );
     }
-  },
-});
+
+    this.fs.copyTpl(
+      this.templatePath('style.scss'),
+      this.destinationPath(`src/styles/${this.pageName}/_${this.moduleName}.scss`),
+      {
+        moduleName: this.moduleName
+      }
+    );
+
+    // add import statement to main.scss
+    const file = fs.readFileSync('src/styles/main.scss', 'utf-8');
+    const search = `// ${this.pageName}`;
+    const index = file.lastIndexOf(search);
+    const start = file.substr(0, index);
+    const end = file.substr(index);
+
+    fs.writeFileSync(
+      'src/styles/main.scss',
+      start + `@import '${this.pageName}/${this.moduleName}';\n` + end
+    );
+  }
+};
 

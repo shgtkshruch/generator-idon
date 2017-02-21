@@ -1,10 +1,10 @@
-const generators = require('yeoman-generator');
+const Generator = require('yeoman-generator');
 const fs = require('fs');
 
-module.exports = generators.Base.extend({
-  constructor: function() {
-    generators.Base.apply(this, arguments);
-  },
+module.exports = class extends Generator {
+  constructor(args, opts) {
+    super(args, opts);
+  }
 
   prompting() {
 
@@ -28,28 +28,24 @@ module.exports = generators.Base.extend({
       this.pageName = answers.pageName;
       this.scriptName = answers.scriptName;
     });
-  },
+  }
 
-  writing: {
-    script() {
-      this.copy(
-        'script.js',
-        `src/scripts/${this.pageName}/${this.scriptName}.js`
-      );
-    },
+  writing() {
+    this.fs.copy(
+      this.templatePath('script.js'),
+      this.destinationPath(`src/scripts/${this.pageName}/${this.scriptName}.js`)
+    );
 
-    pug() {
-      const file = fs.readFileSync('src/layout.pug', 'utf-8');
-      const search = '// endbuild';
-      const index = file.lastIndexOf(search);
-      const start = file.substr(0, index);
-      const end = file.substr(index);
+    const file = fs.readFileSync('src/layout.pug', 'utf-8');
+    const search = '// endbuild';
+    const index = file.lastIndexOf(search);
+    const start = file.substr(0, index);
+    const end = file.substr(index);
 
-      fs.writeFileSync(
-        'src/layout.pug',
-        start + `script(src='scripts/${this.pageName}/${this.scriptName}.js')\n    ` + end
-      );
-    }
-  },
-});
+    fs.writeFileSync(
+      'src/layout.pug',
+      start + `script(src='scripts/${this.pageName}/${this.scriptName}.js')\n    ` + end
+    );
+  }
+};
 
