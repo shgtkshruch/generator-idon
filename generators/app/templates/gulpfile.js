@@ -86,7 +86,7 @@ gulp.task('sass', () => {
 });
 
 gulp.task('js', () => {
-  gulp.src('./src/scripts/app.js')
+  return gulp.src('./src/scripts/app.js')
     .pipe($.plumber())
     .pipe($.sourcemaps.init())
     .pipe($.rollup({
