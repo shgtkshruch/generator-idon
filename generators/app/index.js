@@ -56,6 +56,11 @@ module.exports = class extends Generator {
       this.destinationPath('.eslintrc')
     );
 
+    this.fs.copy(
+      this.templatePath('stylelintrc'),
+      this.destinationPath('.stylelintrc')
+    );
+
     // pug
     this.fs.copyTpl(
       this.templatePath('index.pug'),

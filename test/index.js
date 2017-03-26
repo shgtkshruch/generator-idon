@@ -22,6 +22,7 @@ describe('general', () => {
       '.babelrc',
       '.eslintrc',
       '.editorconfig',
+      '.stylelintrc',
       'README.md',
       'bower.json',
       'package.json',

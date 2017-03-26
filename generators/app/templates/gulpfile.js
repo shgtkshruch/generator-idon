@@ -22,11 +22,11 @@ gulp.task('browserSync', () => {
     server: {
       baseDir: 'dist',
       routes: {
-        '/bower_components': 'bower_components'
-      }
+        '/bower_components': 'bower_components',
+      },
     },
     notify: false,
-    browser: 'Google Chrome Canary'
+    browser: 'Google Chrome Canary',
   });
 });
 
@@ -39,10 +39,10 @@ gulp.task('wiredep', () => {
 gulp.task('html', ['pug', 'sass', 'js'], () => {
   return gulp.src('dist/*.html')
     .pipe($.useref())
-    .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
+    .pipe($.if('*.html', $.htmlmin({ collapseWhitespace: true })))
     .pipe($.if('*.css', $.uncss({
       html: ['dist/*.html'],
-      ignore: ['is-active']
+      ignore: ['is-active'],
     })))
     .pipe($.if('*.css', $.cleanCss()))
     .pipe($.if('*.js', $.uglify()))
@@ -53,10 +53,10 @@ gulp.task('pug', () => {
   return gulp.src('src/**/*.pug')
     .pipe($.plumber())
     .pipe($.changed('dist', {
-      extension: '.html'
+      extension: '.html',
     }))
     .pipe($.pug({
-      pretty: true
+      pretty: true,
     }))
     .pipe($.prettify({
       condense: true,
@@ -66,7 +66,7 @@ gulp.task('pug', () => {
       indent_inner_html: 'false',
       brace_style: 'expand',
       wrap_line_length: 0,
-      preserve_newlines: true
+      preserve_newlines: true,
     }))
     .pipe(gulp.dest('dist'))
     .pipe(bs.stream());
@@ -74,15 +74,25 @@ gulp.task('pug', () => {
 
 gulp.task('sass', () => {
   return gulp.src('src/styles/main.scss')
-    .pipe($.sass().on('error', $.sass.logError))
+    .pipe($.sass().on('error', () => {}))
     .pipe($.postcss([
-      autoprefixer({browers: ['last 2 version', 'ie9', 'ie8']}),
-      sorting({'sort-order': 'yandex'}),
+      autoprefixer({ browers: ['last 2 version', 'ie9', 'ie8'] }),
+      sorting({ 'sort-order': 'yandex' }),
       mqpacker,
     ]))
     .pipe($.stylefmt())
     .pipe(gulp.dest('dist/styles'))
     .pipe(bs.stream());
+});
+
+gulp.task('stylelint', () => {
+  return gulp.src('src/styles/**/*.scss')
+    .pipe($.stylelint({
+      failAfterError: false,
+      reporters: [
+        { formatter: 'string', console: true },
+      ],
+    }));
 });
 
 gulp.task('js', () => {
@@ -95,12 +105,12 @@ gulp.task('js', () => {
       format: 'iife',
       plugins: [
         eslint({
-          useEslintrc: true
+          useEslintrc: true,
         }),
         babel({
-          exclude: 'node_modules/**/*'
+          exclude: 'node_modules/**/*',
         }),
-      ]
+      ],
     }))
     .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('dist/scripts'))
@@ -112,7 +122,7 @@ gulp.task('image', () => {
     .pipe($.changed('dist/images'))
     .pipe($.imagemin({
       progressive: true,
-      interlaced: true
+      interlaced: true,
     }))
     .pipe(gulp.dest('dist/images'));
 });
@@ -137,13 +147,13 @@ gulp.task('ghpages', () => {
 
 gulp.task('watch', () => {
   gulp.watch('src/**/*.pug', ['pug']);
-  gulp.watch('src/styles/**/*.scss', ['sass']);
+  gulp.watch('src/styles/**/*.scss', ['stylelint', 'sass']);
   gulp.watch('src/scripts/**/*.js', ['js']);
   gulp.watch('src/images/**/*', ['image']);
 });
 
 gulp.task('default', (cb) => {
-  runSequence(['pug', 'sass', 'js', 'image'], 'browserSync', 'watch', cb);
+  runSequence(['pug', 'sass', 'stylelint', 'js', 'image'], 'browserSync', 'watch', cb);
 });
 
 gulp.task('build', (cb) => {
