@@ -23,6 +23,7 @@ If you want to use JavaScript and CSS libraries, the following require.
 - CSS Autoprefixing with [autoprefixer](https://github.com/postcss/autoprefixer)
 - Sorts CSS properties fast and automatically with [postcss-sorting](https://github.com/hudochenkov/postcss-sorting)
 - Automatically formats CSS with [stylefmt](https://github.com/morishitter/stylefmt)
+- Lint SCSS files with [stylelint](https://stylelint.io/)
 - Enable ES2015 features using [Babel](https://babeljs.io/)
 - Eslint with [eslint-config-airbnb](https://github.com/airbnb/javascript)
 - Efficiently bundle JavaScript files up into a single file with [rollup](http://rollupjs.org/)
