@@ -136,7 +136,7 @@ gulp.task('clean:build', () => {
     'dist/layout.html',
     'dist/partials',
     'dist/{styles,scripts}/*',
-    '!dist/{styles,scripts}/{main,vendor}.*',
+    '!dist/{styles,scripts}/{app,main,vendor}.{css,js}',
   ]);
 });
 
