@@ -4,6 +4,7 @@ const browserSync = require ('browser-sync');
 
 const autoprefixer = require('autoprefixer');
 const sorting = require('postcss-sorting');
+const assets = require('postcss-assets');
 const mqpacker = require('css-mqpacker');
 const stylefmt = require('stylefmt');
 
@@ -77,6 +78,10 @@ gulp.task('sass', () => {
     .pipe($.sass().on('error', () => {}))
     .pipe($.postcss([
       autoprefixer({ browers: ['last 2 version', 'ie9', 'ie8'] }),
+      assets({
+        loadPaths: ['src/images/**/'],
+        relative: true,
+      }),
       sorting({ 'sort-order': 'yandex' }),
       mqpacker,
     ]))
